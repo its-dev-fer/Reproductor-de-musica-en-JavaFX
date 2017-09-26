@@ -27,7 +27,7 @@ public class InicioDeSesion {
       try {
          // Apertura del fichero y creacion de BufferedReader para poder
          // hacer una lectura comoda (disponer del metodo readLine()).
-         archivo = new File ("C:\\usr.txt");
+         archivo = new File ("C:\\usr.txt"); //Cambien la ruta por donde está su archivo
          fr = new FileReader (archivo);
          br = new BufferedReader(fr);
 
