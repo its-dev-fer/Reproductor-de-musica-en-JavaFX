@@ -1,5 +1,7 @@
 .root{
+    /*
     -fx-background: rgb(71, 71, 71);
+    */
 }
 
 .DarkBgdLabel{
@@ -52,4 +54,19 @@
     -fx-background-color: rgb(244, 208, 65);
     -fx-border-radius: 120;
     -fx-background-radius: 120;
+}
+
+.NoTengoUsuarioLbl{
+    -fx-background-color: rgb(66, 163, 79);
+    -fx-padding: 5;
+     -fx-border-radius: 30;
+    -fx-background-radius: 30;
+}
+
+.SmallButton{
+    -fx-text-fill: white;
+    -fx-font-size: 8pt;
+    -fx-background-color: rgb(66, 163, 79);
+    -fx-border-radius: 30;
+    -fx-background-radius: 30;
 }

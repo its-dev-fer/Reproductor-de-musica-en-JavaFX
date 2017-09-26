@@ -32,5 +32,6 @@
             <Image url="@img/contrasenia_usuario.png" />
          </image>
       </ImageView>
+      <Button layoutX="96.0" layoutY="347.0" mnemonicParsing="false" onAction="#CrearNuevoUsuario" prefHeight="24.0" prefWidth="108.0" styleClass="SmallButton" stylesheets="@loguicss.css" text="No tengo usuario" />
    </children>
 </Pane>

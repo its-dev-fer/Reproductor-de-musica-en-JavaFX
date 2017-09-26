@@ -6,6 +6,7 @@
 package protologuin;
 
 import javafx.scene.control.TextField;
+import java.io.*;
 
 /*
 Clase que leerá el archivo de texto donde se alojan la informacion de usuarios
@@ -19,6 +20,38 @@ public class InicioDeSesion {
     
     public void LeerArchivoDeUsuarios(String nombre_del_archivo){//Este método abrirá el archivo y lo leerá
         //Código para leer el archivo
+        
+      File archivo = null;
+      FileReader fr = null;
+      BufferedReader br = null;
+
+      try {
+         // Apertura del fichero y creacion de BufferedReader para poder
+         // hacer una lectura comoda (disponer del metodo readLine()).
+         archivo = new File (getClass().getResource("usr.txt").toExternalForm()); //Cambien la ruta por donde está su archivo
+         fr = new FileReader (archivo);
+         br = new BufferedReader(fr);
+
+         // Lectura del fichero
+         String linea;
+         while((linea=br.readLine())!=null)
+            System.out.println(linea);
+            cantidad_de_usuarios++;
+      }
+      catch(Exception e){
+         e.printStackTrace();
+      }finally{
+         // En el finally cerramos el fichero, para asegurarnos
+         // que se cierra tanto si todo va bien como si salta 
+         // una excepcion.
+         try{                    
+            if( null != fr ){   
+               fr.close();     
+            }                  
+         }catch (Exception e2){ 
+            e2.printStackTrace();
+         }
+      }
     }
     
     private static int ObtenerCantidadDeUsuarios(){//Será llamada por el método anterior
