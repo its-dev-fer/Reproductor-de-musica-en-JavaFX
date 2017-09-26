@@ -6,7 +6,7 @@
 package protologuin;
 
 import javafx.scene.control.TextField;
-
+import java.io.*;
 /*
 Clase que leerá el archivo de texto donde se alojan la informacion de usuarios
 
