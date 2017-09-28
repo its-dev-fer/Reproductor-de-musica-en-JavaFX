@@ -7,39 +7,55 @@ package protologuin;
 
 import javafx.scene.control.TextField;
 import java.io.*;
+import java.util.Stack;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /*
-Clase que leerá el archivo de texto donde se alojan la informacion de usuarios
+Clase que leerá el archivo de texto donde se aloja la informacion de usuarios
 
 Recuerda poner en un comentario qué hiciste y cuándo, por ejemplo:
 
 Fernando: Creé la clase - 25/09/17
+Fernando: Agregué una pila para almacenar a los usuarios ahí
 */
 public class InicioDeSesion {
     static int cantidad_de_usuarios = 0;
+    private String usuario;
     
-    public void LeerArchivoDeUsuarios(String nombre_del_archivo){//Este método abrirá el archivo y lo leerá
+    public void LeerArchivoDeUsuarios() throws IOException{//Este método abrirá el archivo y lo leerá
         //Código para leer el archivo
-        
+      //Stage stage = new Stage();
+      //FileChooser seleccionar_archivo_de_usuarios = new FileChooser();
       File archivo = null;
       FileReader fr = null;
       BufferedReader br = null;
-
+      //String ruta = getClass().getResource("usr.txt").getPath();
+      
       try {
          // Apertura del fichero y creacion de BufferedReader para poder
          // hacer una lectura comoda (disponer del metodo readLine()).
-         archivo = new File (getClass().getResource("usr.txt").toExternalForm()); //Cambien la ruta por donde está su archivo
+         //archivo = new File (getClass().getResource(ruta).toExternalForm()); //Cambien la ruta por donde está su archivo
+         //archivo = new File ("/src/protologuin/usr.txt"); //Cambien la ruta por donde está su archivo
+         //archivo = seleccionar_archivo_de_usuarios.showOpenDialog(stage);
+         archivo = new File("C:\\Users\\fer_i\\Documents\\ProtoLoguin\\ProtoLoguin\\src\\protologuin\\usr.txt");
          fr = new FileReader (archivo);
          br = new BufferedReader(fr);
 
          // Lectura del fichero
          String linea;
-         while((linea=br.readLine())!=null)
-            System.out.println(linea);
-            cantidad_de_usuarios++;
-      }
-      catch(Exception e){
-         e.printStackTrace();
+         while((linea=br.readLine())!=null){
+             System.out.println(linea);
+             this.usuario = linea;
+            this.cantidad_de_usuarios++;
+         }
+      }catch(FileNotFoundException e){
+         Alert alert = new Alert(AlertType.ERROR);
+         alert.setTitle("Algo salió mal");
+         alert.setContentText("Ha ocurrido un error mientras se leía el archivo de usuarios, contácte con el administrador.");
+         alert.showAndWait();
       }finally{
          // En el finally cerramos el fichero, para asegurarnos
          // que se cierra tanto si todo va bien como si salta 
@@ -54,14 +70,6 @@ public class InicioDeSesion {
       }
     }
     
-    private static int ObtenerCantidadDeUsuarios(){//Será llamada por el método anterior
-     
-        
-    //En pocas palabras, regresará la cantidad de lineas que leyó
-    
-    return cantidad_de_usuarios;
-    }
-    
     public String ObtenerUsuario(TextField campo_usuario){//Este método recibirá el objeto para escribir el nombre del usuario y devolverá su valor como string
         return campo_usuario.getText();
     }
@@ -70,5 +78,7 @@ public class InicioDeSesion {
         return campo_contrasenia.getText();
     }
     
-    //Si se necesitan más métodos hay que hacerlos :v
+    public String RecuperarUsuarioLeido(){
+        return this.usuario;
+    }
 }

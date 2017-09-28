@@ -11,9 +11,12 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  *
@@ -38,14 +41,15 @@ public class CrearNuevoUsuario {
         return this.email_de_usuario = campo_email.getText();
     }
     
-    public void EscribirArchivoDeUsuarios(String nombre_del_archivo, String usuario, String contrasenia, String email) throws IOException{
+    public void EscribirArchivoDeUsuarios(String nombre_del_archivo, String usuario, String contrasenia, String email) throws IOException, Exception{
         //Escribir en el fichero
         //File archivoUsuarios = new File(nombre_del_archivo);
         String datos_a_guardar;
         try{
             datos_a_guardar = usuario + "/" + contrasenia + "/" + email;
             //FileWriter escritor = new FileWriter(archivoUsuarios);
-            FileWriter escritor = new FileWriter(getClass().getResource("usr,txt").toExternalForm());
+            //FileWriter escritor = new FileWriter(getClass().getResource("usr,txt").toExternalForm());
+            FileWriter escritor = new FileWriter(nombre_del_archivo);
             BufferedWriter buffer_escritura = new BufferedWriter(escritor);
             PrintWriter pw = new PrintWriter(buffer_escritura);
             pw.write(datos_a_guardar);
@@ -55,6 +59,15 @@ public class CrearNuevoUsuario {
             alert.setTitle("Aviso");
             alert.setContentText("Se ha registrado el usuario");
             alert.showAndWait();
+            
+            FDGUI NuevoUsuarioGUI = new FDGUI();
+            Stage stage = new Stage();
+            //Abrir la ventana para crear un nuevo usuario
+        
+            FXMLLoader lanzadorDeVentana = new FXMLLoader(getClass().getResource("CrearNuevoUsuario.fxml"));
+            Parent root  = (Parent) lanzadorDeVentana.load();
+        
+            NuevoUsuarioGUI.PrepararEscena(stage, 0, 0, "FXMLDocument.fxml", "loguicss.css");
         }catch(IOException ex){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Algo salió mal :c");

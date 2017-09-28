@@ -8,8 +8,6 @@ package protologuin;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -113,7 +111,7 @@ public class CrearNuevoUsuarioController implements Initializable {
                 INPUT_TEXT_Email.setStyle("-fx-background: rgb(66, 163, 79)");
             }
             
-            if(!email.contains("@")){
+            if(!email.contains("@") && !email.contains(".")){
                 INPUT_TEXT_Email.setStyle("-fx-background: rgb(244, 95, 66)");
             }else{
                 INPUT_TEXT_Email.setStyle("-fx-background: rgb(66, 163, 79)");
@@ -125,7 +123,7 @@ public class CrearNuevoUsuarioController implements Initializable {
                     if(response == si){
                         try {
                             //Procede a registrarlo en el archivo y lanzar la interfaz del usuario en modo gratuito
-                            nuevo_usuario.EscribirArchivoDeUsuarios("Usuarios.txt", nombreDeUsuario, contrasenia, email);//Ejemplo
+                            nuevo_usuario.EscribirArchivoDeUsuarios("C:\\Users\\fer_i\\Documents\\ProtoLoguin\\ProtoLoguin\\src\\protologuin\\usr.txt", nombreDeUsuario, contrasenia, email);//Ejemplo
                         } catch (IOException ex) {
                             alert.setTitle("Algo salió mal :c");
                             alert.setContentText("Ha ocurrido un error al obtener los datos de inicio de sesión, quizá el archivo está corrupto.\nContacte con el administrador.");
