@@ -6,6 +6,7 @@
 package upmusic;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,15 +38,15 @@ public class CrearNuevoUsuario {
         return this.email_de_usuario = campo_email.getText();
     }
     
-    public void EscribirArchivoDeUsuarios(String nombre_del_archivo, String usuario, String contrasenia, String email) throws IOException, Exception{
+    public void EscribirArchivoDeUsuarios(String usuario, String contrasenia, String email) throws IOException, Exception{
         //Escribir en el fichero
-        //File archivoUsuarios = new File(nombre_del_archivo);
+        File archivoUsuarios = new File("usuarios.dat");
         String datos_a_guardar;
         try{
             datos_a_guardar = usuario + "/" + contrasenia + "/" + email;
             //FileWriter escritor = new FileWriter(archivoUsuarios);
             //FileWriter escritor = new FileWriter(getClass().getResource("usr,txt").toExternalForm());
-            FileWriter escritor = new FileWriter(nombre_del_archivo);
+            FileWriter escritor = new FileWriter(archivoUsuarios);
             BufferedWriter buffer_escritura = new BufferedWriter(escritor);
             PrintWriter pw = new PrintWriter(buffer_escritura);
             pw.write(datos_a_guardar);

@@ -39,7 +39,8 @@ public class InicioDeSesion {
          //archivo = new File (getClass().getResource(ruta).toExternalForm()); //Cambien la ruta por donde está su archivo
          //archivo = new File ("/src/protologuin/usr.txt"); //Cambien la ruta por donde está su archivo
          //archivo = seleccionar_archivo_de_usuarios.showOpenDialog(stage);
-         archivo = new File("C:\\Users\\fer_i\\Documents\\UP Chiapas\\Programación visual\\Corte 1\\Proyecto\\UPMusic\\src\\upmusic\\usuarios.txt");
+         //archivo = new File("C:\\Users\\fer_i\\Documents\\UP Chiapas\\Programación visual\\Corte 1\\Proyecto\\UPMusic\\src\\upmusic\\usuarios.txt");
+         archivo = new File("usuarios.dat");
          fr = new FileReader (archivo);
          br = new BufferedReader(fr);
 
@@ -49,13 +50,6 @@ public class InicioDeSesion {
              this.usuario = linea;
             this.cantidad_de_usuarios++;
          }
-         
-        if(linea == null){    //Si no se encuentra nada en el archivo de usuarios
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Aviso");
-            alert.setContentText("No encontramos ningún usuario registrado, ¿Por qué no creas uno?");
-            alert.showAndWait();
-        }
       }catch(FileNotFoundException e){
          Alert alert = new Alert(AlertType.ERROR);
          alert.setTitle("Algo salió mal");

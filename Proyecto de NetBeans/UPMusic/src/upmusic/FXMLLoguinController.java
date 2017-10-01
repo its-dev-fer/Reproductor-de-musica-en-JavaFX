@@ -8,7 +8,6 @@ package upmusic;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,8 +16,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -29,6 +30,9 @@ import javafx.stage.Stage;
  */
 public class FXMLLoguinController implements Initializable {
 
+    @FXML
+    Button INPUT_BOTON_Ir_a_registrar;
+    
     @FXML
     TextField INPUT_TEXTO_NombreDeUsuario;
     
@@ -99,13 +103,20 @@ public class FXMLLoguinController implements Initializable {
         }
     }
     
+    @FXML
     public void AbrirVentanaParaRegistrarUsuario(ActionEvent e) throws IOException{
         /*Abrir la ventana para crear un nuevo usuario*/
         Stage stage = new Stage();
+        Stage stage_actual = (Stage) INPUT_BOTON_Ir_a_registrar.getScene().getWindow();
+        
         FXMLLoader fxml = new FXMLLoader(getClass().getResource("FXMLRegistrarUsuario.fxml"));
         Parent root = (Parent) fxml.load();
+        stage.setTitle("UP Music - Creación de usuario");
+        stage.getIcons().add(new Image("file:app_icon.png"));
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.show();
+        stage_actual.close();
     }
 }

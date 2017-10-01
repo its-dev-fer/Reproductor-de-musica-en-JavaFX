@@ -15,7 +15,7 @@
       <Label layoutX="107.0" layoutY="152.0" styleClass="etiquetaPequeniaConFondoOscuro" stylesheets="@UPMusic.css" text="Contraseña:" />
       <PasswordField fx:id="INPUT_TEXTO_Password" layoutX="76.0" layoutY="188.0" promptText="Contraseña" styleClass="textFieldLoguin" stylesheets="@UPMusic.css" />
       <CheckBox fx:id="modo_invitado" layoutX="75.0" layoutY="299.0" mnemonicParsing="false" onAction="#ModoInvitadoSeleccionado" styleClass="checkBoxLoguin" stylesheets="@UPMusic.css" text="Entrar como invitado" />
-      <Button layoutX="97.0" layoutY="333.0" mnemonicParsing="false" onAction="#RegistrarUsuario" styleClass="botonLoguin" stylesheets="@UPMusic.css" text="Registrar" />
+      <Button fx:id="INPUT_BOTON_Registrar_usuario" layoutX="97.0" layoutY="333.0" mnemonicParsing="false" onAction="#RegistrarUsuario" styleClass="botonLoguin" stylesheets="@UPMusic.css" text="Registrar" />
       <Label layoutX="121.0" layoutY="224.0" prefHeight="34.0" prefWidth="59.0" styleClass="etiquetaPequeniaConFondoOscuro" stylesheets="@UPMusic.css" text="Correo:" />
       <TextField fx:id="INPUT_TEXTO_Email" layoutX="76.0" layoutY="258.0" promptText="Correo electrónico" styleClass="textFieldLoguin" stylesheets="@UPMusic.css" />
    </children>

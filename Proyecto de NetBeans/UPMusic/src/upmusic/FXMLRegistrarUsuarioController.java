@@ -11,7 +11,6 @@ import java.util.ResourceBundle;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
@@ -28,7 +28,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class FXMLRegistrarUsuarioController implements Initializable {
-
+    
+    @FXML
+    Button INPUT_BOTON_Registrar_usuario;
+    
     @FXML
     CheckBox modo_invitado;
     @FXML
@@ -45,7 +48,9 @@ public class FXMLRegistrarUsuarioController implements Initializable {
         // TODO
     }    
     
-    public void RegistrarUsuario(ActionEvent e) throws Exception{
+    @FXML
+    public void RegistrarUsuario(ActionEvent e) throws Exception{        
+        
         ButtonType si = new ButtonType("Si");
         ButtonType no = new ButtonType("No");
         boolean usuario_ok = false;
@@ -77,6 +82,7 @@ public class FXMLRegistrarUsuarioController implements Initializable {
                     if (response == si) {
                     //Entrar a la GUI del reproductor SIN ESCRIBIR EN EL ARCHIVO DE USUARIOS
                     Stage stage = new Stage();
+                    Stage stage_acutal = (Stage) INPUT_BOTON_Registrar_usuario.getScene().getWindow();
                     FXMLLoader fxml = new FXMLLoader(getClass().getResource("FXMLReproductor.fxml"));
                     Parent root = null;
                         try {
@@ -88,6 +94,7 @@ public class FXMLRegistrarUsuarioController implements Initializable {
                     stage.initModality(Modality.APPLICATION_MODAL);
                     stage.setScene(new Scene(root));
                     stage.show();
+                    stage_acutal.close();
                     }
                 }
             });
@@ -128,9 +135,10 @@ public class FXMLRegistrarUsuarioController implements Initializable {
             if(usuario_ok && password_ok && email_ok){
                 //Proceder a registrar
                 if(invitado == false){  //Si no activa el modo invitado procede a registrarlo
-                    nuevo_usuario.EscribirArchivoDeUsuarios("C:\\Users\\fer_i\\Documents\\UP Chiapas\\Programación visual\\Corte 1\\Proyecto\\UPMusic\\src\\upmusic\\usuarios.txt", nombreDeUsuario, contrasenia, email);   
+                    nuevo_usuario.EscribirArchivoDeUsuarios(nombreDeUsuario, contrasenia, email);
                     /*Enviar de nuevo al login screen*/
                     Stage stage = new Stage();
+                    
                     FXMLLoader fxml = new FXMLLoader(getClass().getResource("FXMLLoguin.fxml"));
                     Parent root = null;
                         try {
@@ -141,8 +149,7 @@ public class FXMLRegistrarUsuarioController implements Initializable {
                     stage.setTitle("UP Music - Inicio de sesion");
                     stage.initModality(Modality.APPLICATION_MODAL);
                     stage.setScene(new Scene(root));
-                    stage.show();
-                    
+                    stage.show(); 
                 }else{          //En caso contrario, no los registra y quita los colores verdes
                     INPUT_TEXTO_Usuario.setStyle("-fx-background: rgb(188, 188, 188)");
                     INPUT_TEXTO_Password.setStyle("-fx-background: rgb(188, 188, 188)");
