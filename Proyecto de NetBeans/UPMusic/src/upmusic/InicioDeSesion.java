@@ -40,6 +40,7 @@ public class InicioDeSesion {
          //archivo = new File ("/src/protologuin/usr.txt"); //Cambien la ruta por donde está su archivo
          //archivo = seleccionar_archivo_de_usuarios.showOpenDialog(stage);
          //archivo = new File("C:\\Users\\fer_i\\Documents\\UP Chiapas\\Programación visual\\Corte 1\\Proyecto\\UPMusic\\src\\upmusic\\usuarios.txt");
+         //archivo = new File("src/usuarios.dat");
          archivo = new File("usuarios.dat");
          fr = new FileReader (archivo);
          br = new BufferedReader(fr);

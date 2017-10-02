@@ -9,6 +9,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -40,8 +41,9 @@ public class CrearNuevoUsuario {
     
     public void EscribirArchivoDeUsuarios(String usuario, String contrasenia, String email) throws IOException, Exception{
         //Escribir en el fichero
+        //File archivoUsuarios = new File("src/usuarios.dat");
         File archivoUsuarios = new File("usuarios.dat");
-        String datos_a_guardar;
+        String datos_a_guardar;        
         try{
             datos_a_guardar = usuario + "/" + contrasenia + "/" + email;
             //FileWriter escritor = new FileWriter(archivoUsuarios);

@@ -12,6 +12,7 @@ import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,8 +25,10 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class FXMLRegistrarUsuarioController implements Initializable {
     
@@ -138,7 +141,7 @@ public class FXMLRegistrarUsuarioController implements Initializable {
                     nuevo_usuario.EscribirArchivoDeUsuarios(nombreDeUsuario, contrasenia, email);
                     /*Enviar de nuevo al login screen*/
                     Stage stage = new Stage();
-                    
+                    Stage stage_actual = (Stage) INPUT_BOTON_Registrar_usuario.getScene().getWindow();
                     FXMLLoader fxml = new FXMLLoader(getClass().getResource("FXMLLoguin.fxml"));
                     Parent root = null;
                         try {
@@ -146,10 +149,13 @@ public class FXMLRegistrarUsuarioController implements Initializable {
                         } catch (IOException ex) {
                             Logger.getLogger(FXMLRegistrarUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
                         }
+                    stage.getIcons().add(new Image(UPMusic.class.getResourceAsStream("app_icon.png")));
                     stage.setTitle("UP Music - Inicio de sesion");
                     stage.initModality(Modality.APPLICATION_MODAL);
                     stage.setScene(new Scene(root));
+                    stage.setResizable(false);
                     stage.show(); 
+                    stage_actual.close();
                 }else{          //En caso contrario, no los registra y quita los colores verdes
                     INPUT_TEXTO_Usuario.setStyle("-fx-background: rgb(188, 188, 188)");
                     INPUT_TEXTO_Password.setStyle("-fx-background: rgb(188, 188, 188)");

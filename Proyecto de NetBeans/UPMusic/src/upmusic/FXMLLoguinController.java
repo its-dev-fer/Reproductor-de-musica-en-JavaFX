@@ -65,11 +65,11 @@ public class FXMLLoguinController implements Initializable {
         if(nombreUsuario.equals("")){
             INPUT_TEXTO_NombreDeUsuario.setStyle("-fx-background: rgb(244, 95, 66)");
         }else{
-            INPUT_TEXT_Password.setStyle("-fx-background: rgb(66, 163, 79)");
+            INPUT_TEXTO_NombreDeUsuario.setStyle("-fx-background: rgb(66, 163, 79)");
         }
         
         if(contrasenia.equals("")){
-            INPUT_TEXTO_NombreDeUsuario.setStyle("-fx-background: rgb(244, 95, 66)");
+            INPUT_TEXT_Password.setStyle("-fx-background: rgb(244, 95, 66)");
         }else{
             INPUT_TEXT_Password.setStyle("-fx-background: rgb(66, 163, 79)");
         }
@@ -78,13 +78,17 @@ public class FXMLLoguinController implements Initializable {
         
         if(nombreUsuario.equals(usuario_split[0])){
             usuario_correcto = true;
+            INPUT_TEXTO_NombreDeUsuario.setStyle("-fx-background: rgb(66, 163, 79)");
         }else{
             usuario_correcto = false;
+            INPUT_TEXTO_NombreDeUsuario.setStyle("-fx-background: rgb(244, 95, 66)");
         }
         
         if(contrasenia.equals(usuario_split[1])){
+            INPUT_TEXT_Password.setStyle("-fx-background: rgb(66, 163, 79)");
             contrasenia_correcta = true;
         }else{
+            INPUT_TEXT_Password.setStyle("-fx-background: rgb(244, 95, 66)");
             contrasenia_correcta = false;
         }
         
@@ -112,7 +116,7 @@ public class FXMLLoguinController implements Initializable {
         FXMLLoader fxml = new FXMLLoader(getClass().getResource("FXMLRegistrarUsuario.fxml"));
         Parent root = (Parent) fxml.load();
         stage.setTitle("UP Music - Creación de usuario");
-        stage.getIcons().add(new Image("file:app_icon.png"));
+        stage.getIcons().add(new Image(UPMusic.class.getResourceAsStream("app_icon.png")));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         stage.setScene(new Scene(root));
