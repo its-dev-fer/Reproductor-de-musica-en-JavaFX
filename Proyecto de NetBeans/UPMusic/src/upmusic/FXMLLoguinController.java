@@ -95,10 +95,21 @@ public class FXMLLoguinController implements Initializable {
         /*Validar las banderas*/
         if(usuario_correcto && contrasenia_correcta){
             this.usuario = nombreUsuario;
-            Alert alert = new Alert(AlertType.INFORMATION);
+            /*Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Inicio de sesión");
             alert.setContentText("Éxito");
             alert.showAndWait();
+            */
+            
+          Stage stage = new Stage();
+        FXMLLoader fxml = new FXMLLoader(getClass().getResource("FXMLCaratula.fxml"));
+        Parent root = (Parent) fxml.load();
+        stage.setTitle("UP Music -Bienvenido Usuario");
+        stage.getIcons().add(new Image(UPMusic.class.getResourceAsStream("app_icon.png")));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.show();
         }else{
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Inicio de sesión");
@@ -123,4 +134,7 @@ public class FXMLLoguinController implements Initializable {
         stage.show();
         stage_actual.close();
     }
+    
+    
+    
 }
