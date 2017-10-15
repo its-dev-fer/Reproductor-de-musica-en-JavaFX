@@ -86,7 +86,7 @@ public class FXMLRegistrarUsuarioController implements Initializable {
                     //Entrar a la GUI del reproductor SIN ESCRIBIR EN EL ARCHIVO DE USUARIOS
                     Stage stage = new Stage();
                     Stage stage_acutal = (Stage) INPUT_BOTON_Registrar_usuario.getScene().getWindow();
-                    FXMLLoader fxml = new FXMLLoader(getClass().getResource("FXMLReproductor.fxml"));
+                    FXMLLoader fxml = new FXMLLoader(getClass().getResource("FXMLCaratula.fxml"));
                     Parent root = null;
                         try {
                             root = (Parent) fxml.load();
