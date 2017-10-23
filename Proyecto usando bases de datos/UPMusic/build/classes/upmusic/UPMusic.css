@@ -1,0 +1,53 @@
+/*
+	Hoja de estilos para el proyecto UP Music
+	El cual contiene todas las clases para cada elemento que se utilice
+*/
+
+.root{
+	-fx-background: rgb(71, 71, 71);
+}
+
+.etiquetaConFondoOscuro{
+	-fx-text-fill: white;
+	-fx-font-size: 25pt;
+	-fx-padding: 10pt;
+}
+
+.etiquetaPequeniaConFondoOscuro{
+	-fx-text-fill: white;
+	-fx-font-size: 10pt;
+	-fx-padding: 5pt;
+}
+
+.textFieldLoguin{
+	-fx-background: rgb(157, 160, 157);
+	-fx-border-radius: 50;
+	-fx-background-radius: 50;
+}
+
+.botonLoguin{
+	-fx-text-fill: white;
+    -fx-font-size: 15pt;
+    -fx-background-color: rgb(66, 163, 79);
+    -fx-border-radius: 30;
+    -fx-background-radius: 30;
+}
+
+.botonRegistrarUsuario{
+	-fx-text-fill: white;
+    -fx-font-size: 8pt;
+    -fx-background-color: rgb(66, 163, 79);
+    -fx-border-radius: 30;
+    -fx-background-radius: 30;
+}
+
+.etiquetaPrincipalRegistroDeUsuario{
+	-fx-text-fill: white;
+	-fx-font-size: 20pt;
+	-fx-padding: 10pt;
+}
+
+.checkBoxLoguin{
+	-fx-text-fill: white;
+	-fx-font-size: 10pt;
+}

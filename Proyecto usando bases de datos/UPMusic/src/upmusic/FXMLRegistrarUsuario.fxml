@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" stylesheets="@UPMusic.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="upmusic.FXMLRegistrarUsuarioController">
+   <children>
+      <Label layoutX="17.0" layoutY="14.0" prefHeight="67.0" prefWidth="266.0" styleClass="etiquetaPrincipalRegistroDeUsuario" stylesheets="@UPMusic.css" text="Creación de usuario" />
+      <Label layoutX="85.0" layoutY="81.0" styleClass="etiquetaPequeniaConFondoOscuro" stylesheets="@UPMusic.css" text="Nombre de usuario:" />
+      <TextField fx:id="INPUT_TEXTO_Usuario" layoutX="76.0" layoutY="115.0" promptText="Nombre de usuario" styleClass="textFieldLoguin" stylesheets="@UPMusic.css" />
+      <Label layoutX="107.0" layoutY="152.0" styleClass="etiquetaPequeniaConFondoOscuro" stylesheets="@UPMusic.css" text="Contraseña:" />
+      <PasswordField fx:id="INPUT_TEXTO_Password" layoutX="76.0" layoutY="188.0" promptText="Contraseña" styleClass="textFieldLoguin" stylesheets="@UPMusic.css" />
+      <CheckBox fx:id="modo_invitado" layoutX="75.0" layoutY="299.0" mnemonicParsing="false" onAction="#ModoInvitadoSeleccionado" styleClass="checkBoxLoguin" stylesheets="@UPMusic.css" text="Entrar como invitado" />
+      <Button fx:id="INPUT_BOTON_Registrar_usuario" layoutX="97.0" layoutY="333.0" mnemonicParsing="false" onAction="#RegistrarUsuario" styleClass="botonLoguin" stylesheets="@UPMusic.css" text="Registrar" />
+      <Label layoutX="121.0" layoutY="224.0" prefHeight="34.0" prefWidth="59.0" styleClass="etiquetaPequeniaConFondoOscuro" stylesheets="@UPMusic.css" text="Correo:" />
+      <TextField fx:id="INPUT_TEXTO_Email" layoutX="76.0" layoutY="258.0" promptText="Correo electrónico" styleClass="textFieldLoguin" stylesheets="@UPMusic.css" />
+   </children>
+</Pane>
