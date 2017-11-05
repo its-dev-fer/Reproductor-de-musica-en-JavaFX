@@ -1,0 +1,63 @@
+/* 
+    Created on : 2/11/2017, 04:56:46 PM
+    Author     : fer_i
+*/
+.play{
+    /*-fx-background-image: url("playIcon.png");*/
+    -fx-text-fill: white;
+    -fx-font-size: 20pt;
+    -fx-background-color:  rgba(32, 108, 232,1);
+    -fx-padding-left: 10pt;
+    -fx-padding-rigth: 10pt;
+    -fx-border-radius: 90;
+    -fx-border-background: 90;
+    -fx-effect: dropshadow( three-pass-box , rgba(26,79,165,1) , 1, 0.0 , 0 , 5 );
+}
+
+.play:hover{
+    /*-fx-effect: dropshadow( three-pass-box , rgba(26,79,165,1) , 1, 0.0 , 0 , 5 );*/
+    -fx-effect: dropshadow( three-pass-box , rgba(26,79,165,1) , 0, 0.0 , 0 , 2 );
+}
+
+.next{
+    /*-fx-background-image: url("next.png");*/
+    -fx-font-size: 20pt;
+    -fx-text-fill: white;
+    -fx-background-color:  rgba(32, 108, 232,1);
+    -fx-padding-left: 10pt;
+    -fx-padding-rigth: 10pt;
+    -fx-effect: dropshadow( three-pass-box , rgba(26,79,165,1) , 1, 0.0 , 0 , 5 );
+}
+
+.next:hover{
+    /*-fx-effect: dropshadow( three-pass-box ,  rgba(26,79,165,1) , 1, 0.0 , 0 , 5 );*/
+    -fx-effect: dropshadow( three-pass-box , rgba(26,79,165,1) , 0, 0.0 , 0 , 2 );
+}
+
+.previous{
+    /*-fx-background-image: url("next.png");*/
+    -fx-text-fill: white;
+    -fx-font-size: 20pt;
+    -fx-background-color:  rgba(32, 108, 232,1);
+    -fx-padding-left: 10pt;
+    -fx-padding-rigth: 10pt;
+    -fx-effect: dropshadow( three-pass-box , rgba(26,79,165,1) , 1, 0.0 , 0 , 5 );
+}
+
+.previous:hover{
+    /*-fx-effect: dropshadow( three-pass-box ,  rgba(26,79,165,1) , 1, 0.0 , 0 , 2 );*/
+    -fx-effect: dropshadow( three-pass-box , rgba(26,79,165,1) , 0, 0.0 , 0 , 2 );
+}
+
+.caratula{
+    -fx-padding: 20pt;
+    -fx-border-radius: 20;
+    -fx-border-background: 20;
+    -fx-effect: dropshadow( three-pass-box ,  rgba(26,79,165,1) , 1, 0.0 , 0 , 5 );
+}
+
+.contenedorDeBotonesDeReproduccion{
+    /*-fx-padding: 10pt;*/
+    -fx-padding-left: 10pt;
+    -fx-padding-rigth: 10pt;
+}

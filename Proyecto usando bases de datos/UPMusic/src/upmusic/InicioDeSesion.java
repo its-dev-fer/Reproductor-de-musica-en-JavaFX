@@ -30,7 +30,7 @@ public class InicioDeSesion {
     public Conexion conexionBD;
     private ArrayList<String> listaUsuarios;
     private ArrayList<String> listaUsuariosPassword;
-    
+    private boolean premium;
     private Conexion c;
     
     public InicioDeSesion(Conexion co){
@@ -49,6 +49,7 @@ public class InicioDeSesion {
             while(results.next()){
                 listaUsuarios.add(results.getString("Nombre_usuario"));
                 listaUsuariosPassword.add(results.getString("Contrasenia"));
+                premium = results.getBoolean("Premium");
             }
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -69,5 +70,9 @@ public class InicioDeSesion {
     
     public ArrayList obtenerPasswordsQueCoinciden(){
         return this.listaUsuariosPassword;
+    }
+    
+    public boolean getPremiumStatus(){
+        return this.premium;
     }
 }

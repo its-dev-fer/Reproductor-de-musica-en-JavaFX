@@ -6,6 +6,7 @@
 package upmusic;
 
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
@@ -48,6 +49,10 @@ public class CrearNuevoUsuario {
             sePudoRegistrar = false;
             //System.out.println("!!! No se pudo crear el registro !!!");
             System.out.println(ex);
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("UP Music error :c");
+            alert.setContentText(String.valueOf(ex));
+            alert.showAndWait();
         }
         
         if(sePudoRegistrar){

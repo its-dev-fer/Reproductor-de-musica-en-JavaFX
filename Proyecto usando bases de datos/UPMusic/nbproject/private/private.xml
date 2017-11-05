@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/fer_i/Documents/RESPALDO%20DE%20ARCHIVOS/UP%20Chiapas/UP%20Chiapas/Programación%20visual/Corte%201/Proyecto/UPMusic/src/upmusic/InicioDeSesion.java</file>
-            <file>file:/C:/Users/fer_i/Documents/RESPALDO%20DE%20ARCHIVOS/UP%20Chiapas/UP%20Chiapas/Programación%20visual/Corte%201/Proyecto/UPMusic/src/upmusic/FXMLLoguinController.java</file>
-            <file>file:/C:/Users/fer_i/Documents/RESPALDO%20DE%20ARCHIVOS/UP%20Chiapas/UP%20Chiapas/Programación%20visual/Corte%201/Proyecto/UPMusic/src/upmusic/Conexion.java</file>
+            <file>file:/C:/Users/fer_i/Documents/UP%20Chiapas/Programación%20visual/Corte%201/Proyecto/UPMusic/src/upmusic/Reproduccion.java</file>
+            <file>file:/C:/Users/fer_i/Documents/UP%20Chiapas/Programación%20visual/Corte%201/Proyecto/UPMusic/src/upmusic/FXMLCaratulaController.java</file>
+            <file>file:/C:/Users/fer_i/Documents/UP%20Chiapas/Programación%20visual/Corte%201/Proyecto/UPMusic/src/upmusic/UpdateLibrary.java</file>
+            <file>file:/C:/Users/fer_i/Documents/UP%20Chiapas/Programación%20visual/Corte%201/Proyecto/UPMusic/src/upmusic/SongsTableThread.java</file>
         </group>
     </open-files>
 </project-private>

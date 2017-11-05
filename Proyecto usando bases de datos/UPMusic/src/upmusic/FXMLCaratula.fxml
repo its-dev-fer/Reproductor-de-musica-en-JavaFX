@@ -4,15 +4,14 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="upmusic.FXMLCaratulaController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -35,44 +34,58 @@
       </MenuBar>
    </top>
    <bottom>
-      <BorderPane prefHeight="42.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <right>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <right>
-                  <Button mnemonicParsing="false" text="Next" BorderPane.alignment="CENTER" />
-               </right>
-               <center>
-                  <Button mnemonicParsing="false" text="Play/Pause" BorderPane.alignment="CENTER" />
-               </center>
-               <left>
-                  <Button mnemonicParsing="false" text="Previous" BorderPane.alignment="CENTER" />
-               </left>
-            </BorderPane>
-         </right>
+      <BorderPane fx:id="contenedor" prefHeight="114.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <left>
-            <ImageView fitHeight="67.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fx:id="caratula" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@app_icon.png" />
                </image>
             </ImageView>
          </left>
+         <right>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="contenedorDeBotonesDeReproduccion" stylesheets="@Reproductor.css" BorderPane.alignment="CENTER">
+               <center>
+                  <Button fx:id="play" mnemonicParsing="false" styleClass="play" stylesheets="@Reproductor.css" text="I&gt;" BorderPane.alignment="CENTER" />
+               </center>
+               <left>
+                  <Button fx:id="back" mnemonicParsing="false" styleClass="previous" stylesheets="@Reproductor.css" text="&lt;" BorderPane.alignment="CENTER" />
+               </left>
+               <right>
+                  <Button fx:id="next" mnemonicParsing="false" styleClass="next" stylesheets="@Reproductor.css" text="&gt;" BorderPane.alignment="CENTER" />
+               </right>
+            </BorderPane>
+         </right>
          <center>
-            <ProgressBar prefWidth="200.0" progress="0.51" BorderPane.alignment="CENTER" />
+            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <center>
+                  <Slider BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
          </center>
       </BorderPane>
    </bottom>
    <left>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-        </content>
-      </ScrollPane>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <TableView fx:id="tablaGeneros" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+         </center>
+      </BorderPane>
    </left>
    <center>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" />
-        </content>
-      </ScrollPane>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <TableView fx:id="tablaCanciones" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+         </center>
+      </BorderPane>
    </center>
 </BorderPane>

@@ -36,19 +36,20 @@ import java.util.ArrayList;
 public class FXMLLoguinController implements Initializable {
 
     @FXML
-    Button INPUT_BOTON_Ir_a_registrar;
+    private Button INPUT_BOTON_Ir_a_registrar;
     
     @FXML
-    TextField INPUT_TEXTO_NombreDeUsuario;
+    private TextField INPUT_TEXTO_NombreDeUsuario;
     
     @FXML
-    PasswordField INPUT_TEXT_Password;
+    private PasswordField INPUT_TEXT_Password;
     
     @FXML
-    Button loguin;
+    private Button loguin;
     
     private String usuario;
     private Conexion conexionBD;
+    private boolean premiumUser;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -73,11 +74,12 @@ public class FXMLLoguinController implements Initializable {
             inicio_de_sesion.consultarUsuario(nombreUsuario, contrasenia);     
             usuarios = inicio_de_sesion.obtenerUsuariosQueCoinciden();
             passwords = inicio_de_sesion.obtenerPasswordsQueCoinciden();
+            premiumUser = inicio_de_sesion.getPremiumStatus();
             
             for(int i = 0; i < usuarios.size(); i++){
                 if(nombreUsuario.equals(usuarios.get(i))){
                     usuario_correcto = true;
-                    //INPUT_TEXTO_NombreDeUsuario.setStyle("-fx-background: rgb(66, 163, 79)");
+                    //INPUT_TEXTO_NombreDeUsua= true;rio.setStyle("-fx-background: rgb(66, 163, 79)");
                 }else{
                     usuario_correcto = false;
                     //INPUT_TEXTO_NombreDeUsuario.setStyle("-fx-background: rgb(244, 95, 66)");
@@ -106,11 +108,22 @@ public class FXMLLoguinController implements Initializable {
         
         /*Si el usuario y la contraseña concuerdan*/
         if(usuario_correcto && contrasenia_correcta){
+            Usuario guardarDatosDeSesion = new Usuario();
+            String premiumStatus = "";
+            
             this.usuario = nombreUsuario;
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Inicio de sesión");
             alert.setContentText("Éxito");
             alert.showAndWait();
+            
+            if(premiumUser){
+                premiumStatus = "Premium";
+            }else{
+                premiumStatus = "Free";
+            }
+            
+            guardarDatosDeSesion.almacenarUsuario(usuario);
             
             conexionBD.close();
             Stage actual = (Stage)loguin.getScene().getWindow();
@@ -119,7 +132,7 @@ public class FXMLLoguinController implements Initializable {
             Parent root = (Parent) fxml.load();
             
             nuevo.getIcons().add(new Image(UPMusic.class.getResourceAsStream("app_icon.png")));
-            nuevo.setTitle("UP Music - en sesión [ " + this.usuario +" ]");
+            nuevo.setTitle("UP Music - en sesión [ " + this.usuario +" ] - " + premiumStatus);
             nuevo.setScene(new Scene(root));
             nuevo.setMinWidth(800);
             nuevo.setMinHeight(600);
