@@ -5,6 +5,7 @@
 
 .root{
 	-fx-background: rgb(71, 71, 71);
+        -fx-focus-color: transparent;
 }
 
 .etiquetaConFondoOscuro{
@@ -26,7 +27,7 @@
 }
 
 .botonLoguin{
-	-fx-text-fill: white;
+    -fx-text-fill: white;
     -fx-font-size: 15pt;
     -fx-background-color: rgb(66, 163, 79);
     -fx-border-radius: 30;

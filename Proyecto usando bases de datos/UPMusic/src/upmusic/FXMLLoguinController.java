@@ -33,7 +33,7 @@ import java.util.ArrayList;
  *
  * @author fer_i
  */
-public class FXMLLoguinController implements Initializable {
+public class FXMLLoguinController implements Initializable{
 
     @FXML
     private Button INPUT_BOTON_Ir_a_registrar;

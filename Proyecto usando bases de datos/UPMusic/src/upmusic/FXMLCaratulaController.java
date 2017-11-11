@@ -4,27 +4,23 @@
  */
 package upmusic;
 
-import java.io.FileNotFoundException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 /**
  * FXML Controller class*
@@ -54,9 +50,19 @@ public class FXMLCaratulaController implements Initializable {
     
     @FXML
     private Slider barraTiempo;
-    //El elemento de abajo es el contenedor de los controles de reproducción
+    
     @FXML
-    private BorderPane contenedor;
+    private Label infoSong;
+    
+    @FXML
+    private BorderPane controlsBox;
+    
+    @FXML
+    private CheckBox repetirCancion;
+    
+    @FXML
+    private Label timer;
+    
     private Usuario usuario = new Usuario();
     private String usuarioEnSesion = new String("");
     private ObservableList<Cancion> listaDeCanciones = FXCollections.observableArrayList();
@@ -72,9 +78,11 @@ public class FXMLCaratulaController implements Initializable {
     
     private boolean playing;
     
+    private ArrayList<String> rutas = new ArrayList<>();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        reproductor = new Reproduccion();
+        reproductor = new Reproduccion(barraTiempo,timer,play,repetirCancion,actualizarTablaDeCanciones);
         String query;
         BD = new Conexion();
         BD.conectarBD();
@@ -97,6 +105,8 @@ public class FXMLCaratulaController implements Initializable {
         if(!isPremium){
             back.setDisable(true);
             next.setDisable(true);
+            repetirCancion.setDisable(true);
+            barraTiempo.setDisable(true);
         }
         
         ////////////////////////////////////////////////////////////////
@@ -133,36 +143,10 @@ public class FXMLCaratulaController implements Initializable {
         columnaArtistaCancion.setCellValueFactory(new PropertyValueFactory("artista"));
         columnaAlbumCancion.setCellValueFactory(new PropertyValueFactory("album"));
         
-        actualizarBiblioteca = new UpdateLibrary(tablaGeneros, tablaCanciones, BD);
-        actualizarTablaDeCanciones = new SongsTableThread(tablaCanciones, reproductor, BD,play, playing,caratula,barraTiempo);
-        //actualizarBiblioteca.run();
+        actualizarBiblioteca = new UpdateLibrary(tablaGeneros, tablaCanciones, BD,reproductor);
+        System.out.println("Lista de canciones = " + listaDeCanciones);
+        actualizarTablaDeCanciones = new SongsTableThread(tablaCanciones, reproductor, BD,playing,caratula,barraTiempo,controlsBox,infoSong,repetirCancion, rutas,next,back);
         actualizarBiblioteca.start();
-        actualizarTablaDeCanciones.start();
-        
-        
+        actualizarTablaDeCanciones.start();        
     }   
-    
-    /*
-    public void reproducir(){
-        if(reproductor.getPlayer() != null){
-            if(play.getText().equals("II")){
-                reproductor.getPlayer().pause();
-                play.setText("I>");
-            }else{
-                reproductor.getPlayer().play();
-                play.setText("II");
-            }
-        }else{
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("UP Music");
-            alert.setContentText("No se ha seleccionado una canción aún.");
-            alert.showAndWait();
-        }
-     
-    }
-    
-    public void nextSong(){
-        System.out.println("Siguiente");
-    }
-    */
 }

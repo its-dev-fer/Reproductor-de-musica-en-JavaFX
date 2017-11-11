@@ -9,15 +9,17 @@ public class Cancion {
     private final SimpleStringProperty titulo;
     private final SimpleStringProperty artista;
     private final SimpleStringProperty album;
-    private final SimpleStringProperty duracion;
     private final SimpleStringProperty caratula;
+    private final SimpleStringProperty ruta;
+    private final SimpleStringProperty background;
     
-    public Cancion(String title, String artist, String album, String duration, String cover){
+    public Cancion(String title, String artist, String album,String cover, String ruta, String bckg){
         this.titulo = new SimpleStringProperty(title);
         this.artista = new SimpleStringProperty(artist);
         this.album = new SimpleStringProperty(album);
-        this.duracion = new SimpleStringProperty(duration);
         this.caratula = new SimpleStringProperty(cover);
+        this.ruta = new SimpleStringProperty(ruta);
+        this.background = new SimpleStringProperty(bckg);
     }
     
     public String getTitulo(){
@@ -29,10 +31,13 @@ public class Cancion {
     public String getAlbum(){
         return album.get();
     }
-    public String getDuracion(){
-        return duracion.get();
-    }
     public String getCaratula(){
         return caratula.get();
+    }
+    public String getRuta(){
+        return ruta.get();
+    }
+    public String getBackground(){
+        return background.get();
     }
 }

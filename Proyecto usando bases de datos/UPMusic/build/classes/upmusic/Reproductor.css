@@ -2,62 +2,108 @@
     Created on : 2/11/2017, 04:56:46 PM
     Author     : fer_i
 */
+.root{
+    -fx-focus-color: transparent;
+}
+
 .play{
     /*-fx-background-image: url("playIcon.png");*/
     -fx-text-fill: white;
     -fx-font-size: 20pt;
-    -fx-background-color:  rgba(32, 108, 232,1);
+    -fx-background-color:  rgb(66, 163, 79);
     -fx-padding-left: 10pt;
     -fx-padding-rigth: 10pt;
     -fx-border-radius: 90;
     -fx-border-background: 90;
-    -fx-effect: dropshadow( three-pass-box , rgba(26,79,165,1) , 1, 0.0 , 0 , 5 );
+    -fx-effect: dropshadow( three-pass-box , rgb(62, 153, 74) , 1, 0.0 , 0 , 5 );
 }
 
 .play:hover{
     /*-fx-effect: dropshadow( three-pass-box , rgba(26,79,165,1) , 1, 0.0 , 0 , 5 );*/
-    -fx-effect: dropshadow( three-pass-box , rgba(26,79,165,1) , 0, 0.0 , 0 , 2 );
+    -fx-effect: dropshadow( three-pass-box , rgb(62, 153, 74) , 0, 0.0 , 0 , 2 );
 }
 
 .next{
     /*-fx-background-image: url("next.png");*/
     -fx-font-size: 20pt;
     -fx-text-fill: white;
-    -fx-background-color:  rgba(32, 108, 232,1);
+    -fx-background-color:  rgb(66, 163, 79);
     -fx-padding-left: 10pt;
     -fx-padding-rigth: 10pt;
-    -fx-effect: dropshadow( three-pass-box , rgba(26,79,165,1) , 1, 0.0 , 0 , 5 );
+    -fx-effect: dropshadow( three-pass-box , rgb(62, 153, 74) , 1, 0.0 , 0 , 5 );
 }
 
 .next:hover{
     /*-fx-effect: dropshadow( three-pass-box ,  rgba(26,79,165,1) , 1, 0.0 , 0 , 5 );*/
-    -fx-effect: dropshadow( three-pass-box , rgba(26,79,165,1) , 0, 0.0 , 0 , 2 );
+    -fx-effect: dropshadow( three-pass-box , rgb(62, 153, 74) , 0, 0.0 , 0 , 2 );
 }
 
 .previous{
     /*-fx-background-image: url("next.png");*/
     -fx-text-fill: white;
     -fx-font-size: 20pt;
-    -fx-background-color:  rgba(32, 108, 232,1);
+    -fx-background-color:  rgb(66, 163, 79);
     -fx-padding-left: 10pt;
     -fx-padding-rigth: 10pt;
-    -fx-effect: dropshadow( three-pass-box , rgba(26,79,165,1) , 1, 0.0 , 0 , 5 );
+    -fx-effect: dropshadow( three-pass-box , rgb(62, 153, 74) , 1, 0.0 , 0 , 5 );
 }
 
 .previous:hover{
     /*-fx-effect: dropshadow( three-pass-box ,  rgba(26,79,165,1) , 1, 0.0 , 0 , 2 );*/
-    -fx-effect: dropshadow( three-pass-box , rgba(26,79,165,1) , 0, 0.0 , 0 , 2 );
+    -fx-effect: dropshadow( three-pass-box , rgb(62, 153, 74) , 0, 0.0 , 0 , 2 );
 }
 
 .caratula{
     -fx-padding: 20pt;
     -fx-border-radius: 20;
     -fx-border-background: 20;
-    -fx-effect: dropshadow( three-pass-box ,  rgba(26,79,165,1) , 1, 0.0 , 0 , 5 );
+    -fx-effect: dropshadow( three-pass-box ,  rgb(62, 153, 74) , 1, 0.0 , 0 , 5 );
 }
 
 .contenedorDeBotonesDeReproduccion{
     /*-fx-padding: 10pt;*/
     -fx-padding-left: 10pt;
     -fx-padding-rigth: 10pt;
+}
+
+.titleLabel{
+    -fx-margin: 50pt;
+}
+
+.slider{
+    
+}
+.noTextLabel{
+    -fx-padding: 20pt;
+}
+
+/*
+.outline.label .text {
+    -fx-fill: lightseagreen;
+    -fx-stroke: firebrick;
+    -fx-stroke-width: 2px;
+}
+*/
+
+.outline.titleLabel {
+    -fx-fill: black;
+    -fx-stroke-width: 20px;
+}
+
+.labelInfoSong{
+    -fx-text-fill: white;
+    -fx-font-size: 12pt;
+}
+
+.outline.labelInfoSong{
+    -fx-fill: black;
+    -fx-stroke-width: 3px;
+}
+.tablaGeneros{
+    -fx-text-fill: white;
+    -fx-font-size: 12pt;
+}
+.tablaCanciones{
+    -fx-text-fill: white;
+    -fx-font-size: 12pt;
 }

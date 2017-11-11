@@ -11,9 +11,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -35,20 +34,25 @@ public class UpdateLibrary extends Thread{
     private ResultSet songs;
     private ObservableList<Cancion> listaDeCanciones = FXCollections.observableArrayList();
     private Genero itemGenero;
+    private Reproduccion reproductor;
     
     private ArrayList<Integer> ID_GENERO_BD = new ArrayList<>();
     private ArrayList<String> GENERO_BD = new ArrayList<>();
+    private Button next;
+    private Button previous;
     
-    public UpdateLibrary(TableView t, TableView c, Conexion con){
+    public UpdateLibrary(TableView t, TableView c, Conexion con, Reproduccion r){
         this.tablaGeneros = t;
         this.tablaCanciones = c;
         this.con = con;
+        this.reproductor = r;
     }
     
     @Override
     public void run(){
-        System.out.println("En ejecución :v");
+        System.out.println("Actualizacion de bibliotecas segun genero en ejecución");
         tablaGeneros.setOnMouseClicked((MouseEvent ev) -> {
+            
             if(ev.getClickCount() >= 1){
                 tablaCanciones.getItems().clear();
                 System.out.println("==============================================");
@@ -63,7 +67,7 @@ public class UpdateLibrary extends Thread{
                            id_genero = cancionesDelGeneroConsultado.getInt("ID_Genero");
                            if(itemGenero.equals(cancionesDelGeneroConsultado.getString("Descripcion"))){
                                ID_GENERO_BD.add(id_genero);
-                               GENERO_BD.add(cancionesDelGeneroConsultado.getString("Descripcion"));   
+                               GENERO_BD.add(cancionesDelGeneroConsultado.getString("Descripcion"));  
                            }
                         }
                         //Una vez obtenido el ID_Genero del género seleccionado, procederemos a consultar todas las canciones que tengan el mismo ID
@@ -76,11 +80,13 @@ public class UpdateLibrary extends Thread{
                     }
                     
                     try {
+                        String ruta_tmp = "";
+                        //Limpiar el arraylist para que siempre conserve las canciones segun la lista
                         con.comando = con.conexion.createStatement();
                         songs = con.comando.executeQuery(queryCanciones);
                         
                         while(songs.next()){
-                            listaDeCanciones.add( new Cancion(songs.getString("Titulo"), songs.getString("Artista"), songs.getString("Album"), String.valueOf(songs.getDouble("Duracion")), songs.getString("Caratula")));
+                            listaDeCanciones.add( new Cancion(songs.getString("Titulo"), songs.getString("Artista"), songs.getString("Album"), songs.getString("Caratula"), songs.getString("ruta"), songs.getString("background")));
                         }
                     } catch (SQLException ex) {
                         Alert alert = new Alert(AlertType.WARNING);
@@ -90,12 +96,18 @@ public class UpdateLibrary extends Thread{
                     }
                     
                     tablaCanciones.setItems(listaDeCanciones);
+                    listaDeCanciones = getSongsList();
                 }
             }
         });
     }
     
     public ObservableList getSongsList(){
+        System.out.print("Lista [ ");
+        for(int i = 0; i < listaDeCanciones.size(); i++){
+            System.out.print(listaDeCanciones.get(i).getTitulo() + " , ");
+        }
+        System.out.print(" ]\n");
         return listaDeCanciones;
     }
 }

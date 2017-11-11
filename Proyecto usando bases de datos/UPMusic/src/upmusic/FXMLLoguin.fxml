@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" stylesheets="@UPMusic.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="upmusic.FXMLLoguinController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" stylesheets="@UPMusic.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="upmusic.FXMLLoguinController">
    <children>
       <Label layoutX="67.0" layoutY="20.0" styleClass="etiquetaConFondoOscuro" stylesheets="@UPMusic.css" text="UP Music" />
       <Label layoutX="85.0" layoutY="107.0" styleClass="etiquetaPequeniaConFondoOscuro" stylesheets="@UPMusic.css" text="Nombre de usuario:" />
@@ -14,6 +14,6 @@
       <Label layoutX="108.0" layoutY="200.0" styleClass="etiquetaPequeniaConFondoOscuro" stylesheets="@UPMusic.css" text="Contraseña:" />
       <Button fx:id="loguin" layoutX="78.0" layoutY="281.0" mnemonicParsing="false" onAction="#IniciarSesion" styleClass="botonLoguin" stylesheets="@UPMusic.css" text="Iniciar sesión" />
       <Button fx:id="INPUT_BOTON_Ir_a_registrar" layoutX="99.0" layoutY="338.0" mnemonicParsing="false" onAction="#AbrirVentanaParaRegistrarUsuario" styleClass="botonRegistrarUsuario" stylesheets="@UPMusic.css" text="No tengo usuario" />
-      <PasswordField fx:id="INPUT_TEXT_Password" layoutX="76.0" layoutY="234.0" promptText="Contraseña" styleClass="textFieldLoguin" stylesheets="@UPMusic.css" />
+      <PasswordField fx:id="INPUT_TEXT_Password" layoutX="76.0" layoutY="234.0" onAction="#IniciarSesion" promptText="Contraseña" styleClass="textFieldLoguin" stylesheets="@UPMusic.css" />
    </children>
 </Pane>
