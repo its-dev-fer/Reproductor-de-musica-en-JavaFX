@@ -4,7 +4,7 @@
 package upmusic;
 
 import java.io.File;
-import java.util.concurrent.TimeUnit;
+
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -15,6 +15,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
@@ -25,7 +28,7 @@ import javafx.util.Duration;
  * @author fer_i
  */
 
-public class Reproduccion { 
+public class Reproduccion{ 
     
     private Media media;
     private String rutaDeLaCancion = new String("");
@@ -36,18 +39,29 @@ public class Reproduccion {
     public Button playBtn;
     private CheckBox repetirCancion;
     private Duration duration;
-    private SongsTableThread hilo;
+    private TableView tablaDeCanciones;
+    private int cursor;
+    private int max;
+    private int min = 0;
+    private Cancion cancion;
+    private ImageView caratula;
+    private boolean firsTime = true;
+    private Label infoSong;
     
-    public Reproduccion(Slider b, Label l, Button play, CheckBox c,SongsTableThread h){
+    
+    public Reproduccion(Slider b, Label l, Button play, CheckBox c, TableView tbl, ImageView img, Label inf){
         this.isPlaying = false;
         this.barraTiempo = b;
         this.timer = l;
         this.playBtn = play;
         this.repetirCancion = c;
-        this.hilo = h;
+        this.tablaDeCanciones = tbl;
+        this.caratula = img;
+        this.infoSong = inf;
     }
-    
+        
     public void play(){
+        System.out.println("Se ha seleccionado la cancion [" + cursor + " de " + max + " ]");
         isPlaying = true;
         media = new Media(new File(rutaDeLaCancion).toURI().toString());
         player = new MediaPlayer(media);
@@ -79,10 +93,28 @@ public class Reproduccion {
                     System.out.println("Se repite");
                     play();
                 }else{
-                    System.out.println("No se va a repetir");
-                    playBtn.setText("I>");
-                    //updateValues();
-                    barraTiempo.setValue(0);
+                    //Preparar el reproductor para reproducir la canción, si la hay.
+                    if(cursor < max){
+                        //Cuando acabe una canción, se incrementará el cursor
+                        cursor++;
+                        //Recuperar la siguiente cancion
+                        cancion = (Cancion) tablaDeCanciones.getItems().get(cursor);
+                        System.out.println("Nueva cancion = " + cancion.getTitulo());
+                        setPath(cancion.getRuta());
+                        infoSong.setText(cancion.getTitulo() + " - " + cancion.getArtista());
+                        caratula.setImage(new Image("file:" + cancion.getCaratula()));
+                        caratula.setFitWidth(150);
+                        caratula.setFitHeight(150);
+                        caratula.setPreserveRatio(true);
+                        caratula.setSmooth(true);
+                        play();
+                    }else{
+                        //La reproducción se acaba, a menos que esté seleccionada la casilla de repetir lista
+                        System.out.println("No se va a repetir");
+                        playBtn.setText("I>");
+                        barraTiempo.setValue(0);
+                        player.stop();
+                    }
                 }
             }
         });
@@ -97,8 +129,24 @@ public class Reproduccion {
         player.setOnReady(new Runnable(){
             @Override
             public void run() {
+                int tmpCursor;
                 duration = player.getMedia().getDuration();
                 updateValues();
+                tablaDeCanciones.getItems().size();
+                System.out.println("La tabla tiene un total de " + tablaDeCanciones.getItems().size() + " canciones.");
+                max = tablaDeCanciones.getItems().size()-1;
+                tmpCursor = tablaDeCanciones.getSelectionModel().getSelectedIndex();
+                tablaDeCanciones.getSelectionModel().selectedItemProperty().addListener(new ChangeListener(){
+                    @Override
+                    public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                        firsTime = true;
+                    }
+                    
+                });
+                if(firsTime){
+                    cursor = tmpCursor;
+                    firsTime = false;
+                }
             }
         });
                 
@@ -110,44 +158,14 @@ public class Reproduccion {
                 }
             }
         });
-        //updateValues();
-        /*
-        player.currentTimeProperty().addListener((Observable) -> {
-            
-            String currentTime;
-            Long l; 
-            int tmp;
-            int minutos = 0;
-            int seconds = 0;
-            if(barraTiempo.isValueChanging()){
-                player.seek(Duration.seconds((barraTiempo.getValue()*(player.getTotalDuration().toSeconds()/100))));
-            }
-            if(barraTiempo.isPressed()){
-                player.seek(Duration.seconds((barraTiempo.getValue() * (player.getTotalDuration().toSeconds()/100))));
-            }
-            barraTiempo.setValue((player.getCurrentTime().toSeconds()*100) / player.getTotalDuration().toSeconds()*1);
-            //currentTime = String.valueOf(barraTiempo.getValue()*1);
-            l = Math.round(player.getCurrentTime().toSeconds()*1);
-            currentTime = String.valueOf(Integer.valueOf(l.intValue()));
-            if(Integer.valueOf(currentTime) <= 59){
-                timer.setText(minutos + " : " + currentTime);
-                if(Integer.valueOf(currentTime) == 59){
-                    minutos++;
-                }
-            }else{
-                seconds++;
-                tmp = Integer.valueOf(currentTime) - 60;
-                timer.setText(minutos + ":" + seconds);
-            }
-        });
-    */
     }
     
     public void pause(){
         isPlaying = false;
         player.pause();
     }
-    public void stop(){
+    
+    public void stopSong(){
         isPlaying = false;
         if(player != null){
             player.stop();

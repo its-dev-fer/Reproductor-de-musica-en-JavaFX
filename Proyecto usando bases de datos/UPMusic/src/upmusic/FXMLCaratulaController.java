@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -61,6 +62,15 @@ public class FXMLCaratulaController implements Initializable {
     private CheckBox repetirCancion;
     
     @FXML
+    private CheckBox repetirLista;
+    
+    @FXML
+    private Button searchButton;
+    
+    @FXML
+    private TextField busqueda;
+    
+    @FXML
     private Label timer;
     
     private Usuario usuario = new Usuario();
@@ -82,7 +92,8 @@ public class FXMLCaratulaController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        reproductor = new Reproduccion(barraTiempo,timer,play,repetirCancion,actualizarTablaDeCanciones);
+        
+        reproductor = new Reproduccion(barraTiempo,timer,play,repetirCancion,tablaCanciones,caratula,infoSong);
         String query;
         BD = new Conexion();
         BD.conectarBD();
@@ -107,6 +118,9 @@ public class FXMLCaratulaController implements Initializable {
             next.setDisable(true);
             repetirCancion.setDisable(true);
             barraTiempo.setDisable(true);
+            busqueda.setDisable(true);
+            searchButton.setDisable(true);
+            busqueda.setPromptText("Actualízate a premium para desbloquear todas las funcionalidades :D");
         }
         
         ////////////////////////////////////////////////////////////////
@@ -145,8 +159,8 @@ public class FXMLCaratulaController implements Initializable {
         
         actualizarBiblioteca = new UpdateLibrary(tablaGeneros, tablaCanciones, BD,reproductor);
         System.out.println("Lista de canciones = " + listaDeCanciones);
-        actualizarTablaDeCanciones = new SongsTableThread(tablaCanciones, reproductor, BD,playing,caratula,barraTiempo,controlsBox,infoSong,repetirCancion, rutas,next,back);
+        actualizarTablaDeCanciones = new SongsTableThread(tablaCanciones, reproductor, BD,playing,caratula,barraTiempo,controlsBox,infoSong,repetirCancion, rutas,next,back,searchButton, busqueda);
         actualizarBiblioteca.start();
-        actualizarTablaDeCanciones.start();        
+        actualizarTablaDeCanciones.start();
     }   
 }

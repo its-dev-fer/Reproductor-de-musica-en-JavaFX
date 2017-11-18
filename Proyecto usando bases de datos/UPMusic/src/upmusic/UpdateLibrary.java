@@ -40,7 +40,7 @@ public class UpdateLibrary extends Thread{
     private ArrayList<String> GENERO_BD = new ArrayList<>();
     private Button next;
     private Button previous;
-    
+        
     public UpdateLibrary(TableView t, TableView c, Conexion con, Reproduccion r){
         this.tablaGeneros = t;
         this.tablaCanciones = c;
@@ -81,7 +81,6 @@ public class UpdateLibrary extends Thread{
                     
                     try {
                         String ruta_tmp = "";
-                        //Limpiar el arraylist para que siempre conserve las canciones segun la lista
                         con.comando = con.conexion.createStatement();
                         songs = con.comando.executeQuery(queryCanciones);
                         

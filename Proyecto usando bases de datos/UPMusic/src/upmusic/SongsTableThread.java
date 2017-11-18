@@ -1,18 +1,5 @@
 /*
- * Copyright (C) 2017 fer_i
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    Clase que controla la reproducción.
  */
 package upmusic;
 
@@ -24,15 +11,20 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -72,11 +64,13 @@ public class SongsTableThread extends Thread{
     
     private ArrayList<String> rutaDeLasCanciones;
     private ListIterator iterator;
-    private Button nextBtn, prevBtn;
+    private Button nextBtn, prevBtn,searchBtn;
+    private TextField barraBusqueda;
+    private String cancionBuscada;
     
     private int totalDeFilas,cursor;
     
-    public SongsTableThread(TableView songsTable, Reproduccion r, Conexion con, boolean playing, ImageView cover, Slider s, BorderPane b, Label info, CheckBox rep, ArrayList array, Button n, Button pre){
+    public SongsTableThread(TableView songsTable, Reproduccion r, Conexion con, boolean playing, ImageView cover, Slider s, BorderPane b, Label info, CheckBox rep, ArrayList array, Button n, Button pre, Button search, TextField bus){
         this.bgdSize = new BackgroundSize(b.getWidth(),b.getHeight(),true,true,true,true);
         this.tablaCanciones = songsTable;
         this.reproductor = r;
@@ -91,14 +85,64 @@ public class SongsTableThread extends Thread{
         this.rutaDeLasCanciones = array;
         this.nextBtn = n;
         this.prevBtn = pre;
+        this.searchBtn = search;
+        this.barraBusqueda = bus;
     }
     
     @Override
     public void run(){
         System.out.println("Hilo de actualizacion de las pistas iniciada :D");
+        
+        searchBtn.setOnAction((ActionEvent evento) -> {
+            System.out.println("Clicked");
+            System.out.println("Busqueda = " + barraBusqueda.getText());
+            String consulta_tmp = "SELECT * FROM `canciones` WHERE `Titulo` = ";
+            ObservableList<Cancion> listaDeCoincidencias = FXCollections.observableArrayList();
+            int contadorDeCoincidencias = 0;
+            if(!barraBusqueda.getText().equals("")){
+                //rgb(173, 173, 173)
+                barraBusqueda.setStyle("-fx-background: rgb(173, 173, 173)");
+                barraBusqueda.setPromptText("¿Qué vas a escuchar?");
+                cancionBuscada = barraBusqueda.getText();
+                consulta_tmp += "'" + cancionBuscada + "'";
+                System.out.println("Consulta = " + consulta_tmp);
+                try{
+                    conn.comando = conn.conexion.createStatement();
+                    listaDeCanciones = conn.comando.executeQuery(consulta_tmp);                            
+                    while(listaDeCanciones.next()){
+                        contadorDeCoincidencias++;
+                        listaDeCoincidencias.add(new Cancion(listaDeCanciones.getString("Titulo"),listaDeCanciones.getString("Artista"), listaDeCanciones.getString("Album"), listaDeCanciones.getString("Caratula"), listaDeCanciones.getString("ruta"), listaDeCanciones.getString("background")));
+                    }
+                if(contadorDeCoincidencias == 0){
+                    String lastQuery = "INSERT INTO `peticiones`(`Nombre_cancion`) VALUES('" + cancionBuscada + "')";
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("UP Music error");
+                    alert.setContentText("La canción '" + cancionBuscada + "' no la tenemos disponible en estos momentos, le haremos saber a los desarrolladores que has buscado esta canción.");
+                    alert.showAndWait();
+                    barraBusqueda.setText(null);
+                    //Agregarla a la lista de peticiones
+                    conn.comando = conn.conexion.createStatement();
+                    conn.comando.execute(lastQuery);
+                    }else{
+                        tablaCanciones.setItems(listaDeCoincidencias);
+                    }     
+                }catch(SQLException ex){
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("UP Music error :c");
+                    alert.setContentText(String.valueOf(ex));
+                    alert.showAndWait();
+                }
+            }else{
+                //barraBusqueda.setText("Ups, estoy seguro que algo falta aquí");
+                barraBusqueda.setPromptText("Ups, estoy seguro que algo falta aquí");
+                barraBusqueda.setStyle("-fx-background: rgb(244, 95, 66)");
+            }
+        });
+        
         tablaCanciones.getSelectionModel().selectedItemProperty().addListener(new ChangeListener(){
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                
                 if(tablaCanciones.getSelectionModel().getSelectedItem() != null){
                     selectedRow = String.valueOf(tablaCanciones.getSelectionModel().getSelectedItem());
                     cursor = tablaCanciones.getSelectionModel().getSelectedIndex();
@@ -182,76 +226,21 @@ public class SongsTableThread extends Thread{
         
         nextBtn.setOnAction((ActionEvent ev) -> {
             if(reproductor.getPlayer() != null){
-                if(cursor < totalDeFilas - 1){
-                    //Como si existe un reproductor, se manda a pausar
-                    reproductor.stop();
-                    //Incrementamos el contador
-                    cursor++;
-                    //Obtenemos los datos de la cancion de la siguiente fila
-                    song = (Cancion) tablaCanciones.getItems().get(cursor);
-                    //Establecemos la nueva ruta
-                    reproductor.setPath(song.getRuta());
-                    //Actualizamos la informacion de la cancion
-                    strInfoSong = song.getTitulo() + " - " + song.getArtista();
-                    //Recuperamos la ruta de la caratula de la canción
-                    imgPath = song.getCaratula();
-                    blurryBgd = song.getBackground();
-                    //Creamos la caratula
-                    caratula = new Image("file:" + imgPath);
-                    blurCover = new Image("file:" + blurryBgd);
-                    //Asignamos la información de la cancion a la etiqueta
-                    lblInfoSong.setText(strInfoSong);
-                    //Actualizamos el background del borderPane contenedor
-                    controlsBoxBackground = new Background(new BackgroundImage(blurCover,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,bgdSize));
-                    controlsBox.setBackground(controlsBoxBackground);
-                    cuadroCaratula.setFitWidth(150);
-                    cuadroCaratula.setFitHeight(150);
-                    cuadroCaratula.setPreserveRatio(true);
-                    cuadroCaratula.setSmooth(true);
-                    cuadroCaratula.setImage(caratula);
-                    
-                    reproductor.play();
-                }else{
-                    cursor = 0;
-                }
+                
             }
         });
         
         prevBtn.setOnAction((ActionEvent ev) -> {
             if(reproductor.getPlayer() != null){
-                if(cursor > 0 && cursor <= totalDeFilas){
-                    //Como si existe un reproductor, se manda a pausar
-                    reproductor.stop();
-                    //Decrementamos el contador
-                    cursor--;
-                    //Obtenemos los datos de la cancion de la siguiente fila
-                    song = (Cancion) tablaCanciones.getItems().get(cursor);
-                    //Establecemos la nueva ruta
-                    reproductor.setPath(song.getRuta());
-                    //Actualizamos la informacion de la cancion
-                    strInfoSong = song.getTitulo() + " - " + song.getArtista();
-                    //Recuperamos la ruta de la caratula de la canción
-                    imgPath = song.getCaratula();
-                    blurryBgd = song.getBackground();
-                    blurCover = new Image("file:" + blurryBgd);
-                    //Creamos la caratula
-                    caratula = new Image("file:" + imgPath);
-                    //Asignamos la información de la cancion a la etiqueta
-                    lblInfoSong.setText(strInfoSong);
-                    //Actualizamos el background del borderPane contenedor
-                    controlsBoxBackground = new Background(new BackgroundImage(blurCover,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,bgdSize));
-                    controlsBox.setBackground(controlsBoxBackground);
-                    cuadroCaratula.setFitWidth(150);
-                    cuadroCaratula.setFitHeight(150);
-                    cuadroCaratula.setPreserveRatio(true);
-                    cuadroCaratula.setSmooth(true);
-                    cuadroCaratula.setImage(caratula);
-                    
-                    reproductor.play();
-                }else{
-                    cursor = totalDeFilas-1;
-                }
             }
         }); 
+    }
+    
+    public TableView getTabla(){
+        return tablaCanciones;
+    }
+    
+    public int getCursor(){
+        return cursor;
     }
 }
