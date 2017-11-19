@@ -11,11 +11,16 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -32,6 +37,9 @@ public class FXMLCaratulaController implements Initializable {
     private Conexion BD;
     private UsuarioSerializado us= new UsuarioSerializado();
     private ArrayList<Usuario> data;
+    
+    @FXML
+    private MenuBar barraMenu;
     
     @FXML
     private Button play;
@@ -93,7 +101,47 @@ public class FXMLCaratulaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        reproductor = new Reproduccion(barraTiempo,timer,play,repetirCancion,tablaCanciones,caratula,infoSong);
+        /////////////////////////////////////////////////////
+        ///         Agregar los elementos al menú        ///
+        ///////////////////////////////////////////////////
+        
+        //Limpiar los menus existentes para poder agregar los personalizados
+        barraMenu.getMenus().clear();
+        
+        columnaNombreGeneros.setSortable(false);
+        columnaNombreCancion.setSortable(false);
+        columnaArtistaCancion.setSortable(false);
+        columnaAlbumCancion.setSortable(false);
+        
+        Menu menuFile = new Menu("Archivo"); 
+        Menu menuAbout = new Menu("Contacto");
+        MenuItem menuPreferences = new MenuItem("Preferencias Ctrl + P");
+        MenuItem itemAbout = new MenuItem("Acerca de");
+        
+        menuPreferences.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event) {
+                //Abrir ventana de ajustes
+                System.out.println("Ctrl + P :v");
+            }
+        });
+        
+        itemAbout.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event) {
+                //Abrir ventana de acerca de
+                System.out.println("Acerca de");
+            }
+        });
+        
+        barraMenu.getMenus().addAll(menuFile,menuAbout); 
+        
+        //Agregar cada item a su respectivo menú
+        
+        menuFile.getItems().add(menuPreferences);
+        menuAbout.getItems().add(itemAbout);
+        
+        reproductor = new Reproduccion(barraTiempo,timer,play,repetirCancion,tablaCanciones,caratula,infoSong,repetirLista,next,back);
         String query;
         BD = new Conexion();
         BD.conectarBD();

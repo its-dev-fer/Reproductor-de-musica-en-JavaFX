@@ -51,7 +51,7 @@ public class SongsTableThread extends Thread{
     private Image blurCover;
     private Image caratula;
     private String imgPath = "";
-    private String blurryBgd = "";
+    //private String blurryBgd = "";
     private ImageView cuadroCaratula;
     private Slider barraTiempo;
     private BorderPane controlsBox;
@@ -157,9 +157,9 @@ public class SongsTableThread extends Thread{
                             if(song.getTitulo().equals(listaDeCanciones.getString("Titulo"))){
                                 ruta = listaDeCanciones.getString("ruta");
                                 imgPath = listaDeCanciones.getString("Caratula");
-                                blurryBgd = listaDeCanciones.getString("background");
+                                //blurryBgd = listaDeCanciones.getString("background");
                                 caratula = new Image("file:" + imgPath);
-                                blurCover = new Image("file:" + blurryBgd);
+                                //blurCover = new Image("file:" + blurryBgd);
                             }
                         }
                     }catch(SQLException ex){
@@ -176,16 +176,16 @@ public class SongsTableThread extends Thread{
                         strInfoSong = "";
                         cuadroCaratula.setImage(caratula);
                         if(caratula != null){
-                            controlsBoxBackground = new Background(new BackgroundImage(blurCover,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,bgdSize));
-                            controlsBox.setBackground(controlsBoxBackground);   
+                            //controlsBoxBackground = new Background(new BackgroundImage(blurCover,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,bgdSize));
+                            //controlsBox.setBackground(controlsBoxBackground);   
                         }else{
                             try {
                                 defaultCover = new Image(new FileInputStream("default.jpg"));
                             } catch (FileNotFoundException ex) {
                                 System.out.println("No se encuentra la imagen :c");
                             }
-                            controlsBoxBackground = new Background(new BackgroundImage(defaultCover,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,bgdSize));
-                            controlsBox.setBackground(controlsBoxBackground);
+                            //controlsBoxBackground = new Background(new BackgroundImage(defaultCover,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,bgdSize));
+                            //controlsBox.setBackground(controlsBoxBackground);
                         }
                     cuadroCaratula.setFitWidth(150);
                     cuadroCaratula.setFitHeight(150);
@@ -195,8 +195,8 @@ public class SongsTableThread extends Thread{
                     reproductor.play();                    
                     }else{
                         if(caratula != null){
-                            controlsBoxBackground = new Background(new BackgroundImage(blurCover,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,bgdSize));
-                            controlsBox.setBackground(controlsBoxBackground);   
+                            //controlsBoxBackground = new Background(new BackgroundImage(blurCover,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,bgdSize));
+                            //controlsBox.setBackground(controlsBoxBackground);   
                         }else{
                             //"default.svg"
                             try {
@@ -205,8 +205,8 @@ public class SongsTableThread extends Thread{
                             } catch (FileNotFoundException ex) {
                                 System.out.println("No se encuentra la imagen :c");
                         }
-                        controlsBoxBackground = new Background(new BackgroundImage(blurCover,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,bgdSize));
-                        controlsBox.setBackground(controlsBoxBackground);
+                        //controlsBoxBackground = new Background(new BackgroundImage(blurCover,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,bgdSize));
+                        //controlsBox.setBackground(controlsBoxBackground);
                     }
                     lblInfoSong.setText(strInfoSong);
                     strInfoSong = "";

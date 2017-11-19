@@ -11,14 +11,12 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="upmusic.FXMLCaratulaController">
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
+      <MenuBar fx:id="barraMenu" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -39,13 +37,9 @@
       </MenuBar>
    </top>
    <bottom>
-      <BorderPane fx:id="controlsBox" prefHeight="114.0" prefWidth="600.0" styleClass="controlBox" stylesheets="@Reproductor.css" BorderPane.alignment="CENTER">
+      <BorderPane fx:id="controlsBox" prefHeight="114.0" prefWidth="600.0" styleClass="controlsBox" stylesheets="@Reproductor.css" BorderPane.alignment="CENTER">
          <left>
-            <ImageView fx:id="caratula" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-               <image>
-                  <Image url="@app_icon.png" />
-               </image>
-            </ImageView>
+            <ImageView fx:id="caratula" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
          </left>
          <right>
             <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="contenedorDeBotonesDeReproduccion" stylesheets="@Reproductor.css" BorderPane.alignment="CENTER">
@@ -67,7 +61,7 @@
                            </effect></CheckBox>
                      </left>
                      <right>
-                        <CheckBox mnemonicParsing="false" styleClass="labelInfoSong" text="Repetir lista" textFill="WHITE" BorderPane.alignment="CENTER">
+                        <CheckBox fx:id="repetirLista" mnemonicParsing="false" styleClass="labelInfoSong" text="Repetir lista" textFill="WHITE" BorderPane.alignment="CENTER">
                            <effect>
                               <DropShadow />
                            </effect></CheckBox>
@@ -140,26 +134,20 @@
                </columnResizePolicy>
             </TableView>
          </center>
-         <right>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <top>
-                  <AnchorPane prefHeight="29.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <TextField layoutY="2.0" />
-                        <Button layoutX="149.0" layoutY="2.0" mnemonicParsing="false" text="Buscar" />
-                     </children>
-                  </AnchorPane>
-               </top>
+         <top>
+            <BorderPane prefHeight="27.0" prefWidth="365.0" BorderPane.alignment="CENTER">
                <center>
-                  <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
-                    </columns>
-                  </TableView>
+                  <TextField fx:id="busqueda" promptText="¿Qué vas a escuchar?" BorderPane.alignment="CENTER" />
                </center>
+               <right>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <center>
+                        <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Buscar" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+               </right>
             </BorderPane>
-         </right>
+         </top>
       </BorderPane>
    </center>
 </BorderPane>

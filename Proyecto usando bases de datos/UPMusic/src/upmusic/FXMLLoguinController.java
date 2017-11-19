@@ -53,8 +53,16 @@ public class FXMLLoguinController implements Initializable{
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        conexionBD = new Conexion();
-        conexionBD.conectarBD();
+        try{
+            conexionBD = new Conexion();
+            conexionBD.conectarBD();
+        }catch(Exception e){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("UP Music");
+            alert.setContentText("No podemos conectarnos a nuestras bases de datos :c\n1.- Verifica tu conexión a Internet\n2.- Es probable que los servidores se encuentren en mantenimiento.");
+            alert.showAndWait();
+        }
+        
     }    
     
     
@@ -79,10 +87,8 @@ public class FXMLLoguinController implements Initializable{
             for(int i = 0; i < usuarios.size(); i++){
                 if(nombreUsuario.equals(usuarios.get(i))){
                     usuario_correcto = true;
-                    //INPUT_TEXTO_NombreDeUsua= true;rio.setStyle("-fx-background: rgb(66, 163, 79)");
                 }else{
                     usuario_correcto = false;
-                    //INPUT_TEXTO_NombreDeUsuario.setStyle("-fx-background: rgb(244, 95, 66)");
                 }
                 
                 if(contrasenia.equals(passwords.get(i))){
@@ -124,7 +130,6 @@ public class FXMLLoguinController implements Initializable{
             }
             
             guardarDatosDeSesion.almacenarUsuario(usuario);
-            
             conexionBD.close();
             Stage actual = (Stage)loguin.getScene().getWindow();
             Stage nuevo = new Stage();

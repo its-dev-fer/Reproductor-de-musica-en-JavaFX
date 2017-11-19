@@ -8,49 +8,54 @@
 
 .play{
     /*-fx-background-image: url("playIcon.png");*/
+    /*-fx-font-family: 'FontAwesome';*/
     -fx-text-fill: white;
     -fx-font-size: 20pt;
-    -fx-background-color:  rgb(66, 163, 79);
+    -fx-background-color:  #95a5a6;
+    /*rgb(66, 163, 79)*/
     -fx-padding-left: 10pt;
     -fx-padding-rigth: 10pt;
     -fx-border-radius: 90;
     -fx-border-background: 90;
-    -fx-effect: dropshadow( three-pass-box , rgb(62, 153, 74) , 1, 0.0 , 0 , 5 );
+    -fx-effect: dropshadow( three-pass-box , rgb(100, 111, 112) , 1, 0.0 , 0 , 5 );
 }
 
 .play:hover{
     /*-fx-effect: dropshadow( three-pass-box , rgba(26,79,165,1) , 1, 0.0 , 0 , 5 );*/
-    -fx-effect: dropshadow( three-pass-box , rgb(62, 153, 74) , 0, 0.0 , 0 , 2 );
+    -fx-effect: dropshadow( three-pass-box , rgb(100, 111, 112) , 0, 0.0 , 0 , 2 );
+    /*rgb(62, 153, 74)*/
 }
 
 .next{
     /*-fx-background-image: url("next.png");*/
     -fx-font-size: 20pt;
+    -fx-font-family: 'FontAwesome';
     -fx-text-fill: white;
-    -fx-background-color:  rgb(66, 163, 79);
+    -fx-background-color:  #95a5a6;
     -fx-padding-left: 10pt;
     -fx-padding-rigth: 10pt;
-    -fx-effect: dropshadow( three-pass-box , rgb(62, 153, 74) , 1, 0.0 , 0 , 5 );
+    -fx-effect: dropshadow( three-pass-box , rgb(100, 111, 112) , 1, 0.0 , 0 , 5 );
 }
 
 .next:hover{
     /*-fx-effect: dropshadow( three-pass-box ,  rgba(26,79,165,1) , 1, 0.0 , 0 , 5 );*/
-    -fx-effect: dropshadow( three-pass-box , rgb(62, 153, 74) , 0, 0.0 , 0 , 2 );
+    -fx-effect: dropshadow( three-pass-box , rgb(100, 111, 112) , 0, 0.0 , 0 , 2 );
 }
 
 .previous{
+    -fx-font-family: 'FontAwesome';
     /*-fx-background-image: url("next.png");*/
     -fx-text-fill: white;
     -fx-font-size: 20pt;
-    -fx-background-color:  rgb(66, 163, 79);
+    -fx-background-color:  #95a5a6;
     -fx-padding-left: 10pt;
     -fx-padding-rigth: 10pt;
-    -fx-effect: dropshadow( three-pass-box , rgb(62, 153, 74) , 1, 0.0 , 0 , 5 );
+    -fx-effect: dropshadow( three-pass-box , rgb(100, 111, 112) , 1, 0.0 , 0 , 5 );
 }
 
 .previous:hover{
     /*-fx-effect: dropshadow( three-pass-box ,  rgba(26,79,165,1) , 1, 0.0 , 0 , 2 );*/
-    -fx-effect: dropshadow( three-pass-box , rgb(62, 153, 74) , 0, 0.0 , 0 , 2 );
+    -fx-effect: dropshadow( three-pass-box , rgb(100, 111, 112) , 0, 0.0 , 0 , 2 );
 }
 
 .caratula{
@@ -102,8 +107,24 @@
 .tablaGeneros{
     -fx-text-fill: white;
     -fx-font-size: 12pt;
+    -fx-background-color: #7f8c8d;
 }
 .tablaCanciones{
     -fx-text-fill: white;
     -fx-font-size: 12pt;
+    -fx-background-color: #7f8c8d;
+}
+
+.controlsBox{
+    -fx-background-color: #2c3e50;
+}
+
+.table-cell {
+    -fx-text-fill: white;
+    -fx-background-color: #2c3e50;
+}
+
+.table-row-cell:selected .table-cell{
+    -fx-text-fill: black;
+    -fx-background-color: #ecf0f1;
 }

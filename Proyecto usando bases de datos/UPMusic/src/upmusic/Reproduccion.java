@@ -37,7 +37,10 @@ public class Reproduccion{
     private Slider barraTiempo;
     private Label timer;
     public Button playBtn;
+    private Button next;
+    private Button previous;
     private CheckBox repetirCancion;
+    private CheckBox repetirLista;
     private Duration duration;
     private TableView tablaDeCanciones;
     private int cursor;
@@ -49,7 +52,7 @@ public class Reproduccion{
     private Label infoSong;
     
     
-    public Reproduccion(Slider b, Label l, Button play, CheckBox c, TableView tbl, ImageView img, Label inf){
+    public Reproduccion(Slider b, Label l, Button play, CheckBox c, TableView tbl, ImageView img, Label inf, CheckBox repList, Button nxt, Button prev){
         this.isPlaying = false;
         this.barraTiempo = b;
         this.timer = l;
@@ -58,6 +61,9 @@ public class Reproduccion{
         this.tablaDeCanciones = tbl;
         this.caratula = img;
         this.infoSong = inf;
+        this.repetirLista = repList;
+        this.next = nxt;
+        this.previous = prev;
     }
         
     public void play(){
@@ -79,6 +85,82 @@ public class Reproduccion{
                     player.play();
                 }else{
                     play();
+                }
+            }
+        });
+        
+        next.setOnAction((ActionEvent ev) -> {            
+            if(cursor < max){
+                if(player != null){
+                    player.stop();
+                }
+                cursor++;
+                cancion = (Cancion) tablaDeCanciones.getItems().get(cursor);
+                System.out.println("Nueva cancion = " + cancion.getTitulo());
+                setPath(cancion.getRuta());
+                infoSong.setText(cancion.getTitulo() + " - " + cancion.getArtista());
+                caratula.setImage(new Image("file:" + cancion.getCaratula()));
+                caratula.setFitWidth(150);
+                caratula.setFitHeight(150);
+                caratula.setPreserveRatio(true);
+                caratula.setSmooth(true);
+                play();
+            }else{
+                if(repetirLista.isSelected()){
+                    if(cursor == max){
+                        if(player != null){
+                           player.stop();
+                        }
+                        cursor = 0;
+                        cancion = (Cancion) tablaDeCanciones.getItems().get(cursor);
+                        System.out.println("Nueva cancion = " + cancion.getTitulo());
+                        setPath(cancion.getRuta());
+                        infoSong.setText(cancion.getTitulo() + " - " + cancion.getArtista());
+                        caratula.setImage(new Image("file:" + cancion.getCaratula()));
+                        caratula.setFitWidth(150);
+                        caratula.setFitHeight(150);
+                        caratula.setPreserveRatio(true);
+                        caratula.setSmooth(true);
+                        play();
+                    }
+                }
+            }
+        });
+        
+        previous.setOnAction((ActionEvent evv) -> {
+            if(cursor > 0){
+                if(player != null){
+                   player.stop();
+                }
+                cursor--;
+                cancion = (Cancion) tablaDeCanciones.getItems().get(cursor);
+                System.out.println("Nueva cancion = " + cancion.getTitulo());
+                setPath(cancion.getRuta());
+                infoSong.setText(cancion.getTitulo() + " - " + cancion.getArtista());
+                caratula.setImage(new Image("file:" + cancion.getCaratula()));
+                caratula.setFitWidth(150);
+                caratula.setFitHeight(150);
+                caratula.setPreserveRatio(true);
+                caratula.setSmooth(true);
+                play();
+            }else{
+                if(repetirLista.isSelected()){
+                    if(cursor == 0){
+                        if(player != null){
+                           player.stop();
+                        }
+                        cursor = max;
+                        cancion = (Cancion) tablaDeCanciones.getItems().get(cursor);
+                        System.out.println("Nueva cancion = " + cancion.getTitulo());
+                        setPath(cancion.getRuta());
+                        infoSong.setText(cancion.getTitulo() + " - " + cancion.getArtista());
+                        caratula.setImage(new Image("file:" + cancion.getCaratula()));
+                        caratula.setFitWidth(150);
+                        caratula.setFitHeight(150);
+                        caratula.setPreserveRatio(true);
+                        caratula.setSmooth(true);
+                        play();
+                    }
                 }
             }
         });
@@ -114,6 +196,21 @@ public class Reproduccion{
                         playBtn.setText("I>");
                         barraTiempo.setValue(0);
                         player.stop();
+                        if(repetirLista.isSelected()){
+                            if(cursor == max){
+                                cursor = 0;
+                                cancion = (Cancion) tablaDeCanciones.getItems().get(cursor);
+                                System.out.println("Nueva cancion = " + cancion.getTitulo());
+                                setPath(cancion.getRuta());
+                                infoSong.setText(cancion.getTitulo() + " - " + cancion.getArtista());
+                                caratula.setImage(new Image("file:" + cancion.getCaratula()));
+                                caratula.setFitWidth(150);
+                                caratula.setFitHeight(150);
+                                caratula.setPreserveRatio(true);
+                                caratula.setSmooth(true);
+                                play();
+                            }
+                        }
                     }
                 }
             }

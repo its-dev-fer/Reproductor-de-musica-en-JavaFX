@@ -30,6 +30,22 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+//Librerías para importar a PDF
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+
 public class FXMLRegistrarUsuarioController implements Initializable {
     
     @FXML
@@ -37,6 +53,8 @@ public class FXMLRegistrarUsuarioController implements Initializable {
     
     @FXML
     CheckBox modo_invitado;
+    @FXML
+    CheckBox adquirir_premium;
     @FXML
     TextField INPUT_TEXTO_Usuario;
     @FXML
@@ -68,7 +86,6 @@ public class FXMLRegistrarUsuarioController implements Initializable {
         nombreDeUsuario = nuevo_usuario.ObtenerNombreDeUsuario(INPUT_TEXTO_Usuario);
         contrasenia = nuevo_usuario.ObtenerContraseniaDeUsuario(INPUT_TEXTO_Password);
         email = nuevo_usuario.ObtenerEmailDeUsuario(INPUT_TEXTO_Email);
-        
             if(modo_invitado.isSelected()){
                 usuario_ok = true;
                 password_ok = true;
@@ -136,8 +153,40 @@ public class FXMLRegistrarUsuarioController implements Initializable {
                 }    
             }
             
-            
             if(usuario_ok && password_ok && email_ok){
+                if(adquirir_premium.isSelected()){
+                    Alert alert = new Alert(AlertType.INFORMATION,"",si,no);
+                    alert.setTitle("Modo Premium");
+                    alert.setHeaderText("¿Qué es el modo premium?");
+                    alert.setContentText("El modo premium le permite usar las características totales de la aplicación.\nTiene un costo de $25.00\n\tSe generará su ficha de pago.");
+                    alert.showAndWait().ifPresent(new Consumer<ButtonType>(){
+                        @Override
+                        public void accept(ButtonType t) {
+                            if(t==si){
+                                try{
+                                    FileOutputStream archivo = new FileOutputStream("Ficha de pago.pdf");
+                                    Document documento = new Document();
+                                    PdfWriter.getInstance(documento, archivo);
+                                    documento.open();
+                                    documento.add(new Paragraph("=== Ficha de pago ==="));
+                                    documento.add(new Paragraph("Concepto: Pago PREMIUM de UPMusic"));
+                                    documento.add(new Paragraph("Nombre del Cliente: " + nombreDeUsuario));
+                                    documento.add(new Paragraph("Correo del Cliente: " + email));
+                                    documento.add(new Paragraph("Monto total del pago: $25.00"));
+                                    documento.add(new Paragraph("Cantidad con letra: veinticinco pesos mexicanos."));
+                                    documento.add(new Paragraph("Pasar a entregar este documento al UD3 Aula 8 con Luis Fernando Hernández Morales."));
+                                    documento.add(new Paragraph("Gracias por su suscripción."));  
+                                    documento.close();
+                                }catch (IOException ex) {
+                                    Logger.getLogger(FXMLRegistrarUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+                                } catch (DocumentException ex) {
+                                    Logger.getLogger(FXMLRegistrarUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
+                        }
+
+                    });
+                }
                 //Proceder a registrar
                 if(invitado == false){  //Si no activa el modo invitado procede a registrarlo
                     //Insertar consulta sql para registrar el usuario
@@ -160,6 +209,9 @@ public class FXMLRegistrarUsuarioController implements Initializable {
                     stage.initModality(Modality.APPLICATION_MODAL);
                     stage.setScene(new Scene(root));
                     stage.setResizable(false);
+                    if(adquirir_premium.isSelected()){
+                        Desktop.getDesktop().open(new File("Ficha de pago.pdf"));
+                    }
                     stage.show(); 
                     stage_actual.close();
                 }else{          //En caso contrario, no los registra y quita los colores verdes
@@ -180,6 +232,8 @@ public class FXMLRegistrarUsuarioController implements Initializable {
     @FXML
     public void ModoInvitadoSeleccionado(ActionEvent e){
         if(!modo_invitado_seleccionado){
+            adquirir_premium.setSelected(false);
+            adquirir_premium.setDisable(true);
             modo_invitado_seleccionado = true;
             /*Bloquear TextFields*/
             INPUT_TEXTO_Usuario.setText("");
@@ -194,6 +248,7 @@ public class FXMLRegistrarUsuarioController implements Initializable {
             INPUT_TEXTO_Email.setEditable(false);
             INPUT_TEXTO_Email.setDisable(true);
         }else{
+            adquirir_premium.setDisable(false);
             modo_invitado_seleccionado = false;
             /*Desbloquear TextFields*/
             INPUT_TEXTO_Usuario.setEditable(true);
@@ -204,6 +259,15 @@ public class FXMLRegistrarUsuarioController implements Initializable {
             
             INPUT_TEXTO_Email.setEditable(true);
             INPUT_TEXTO_Email.setDisable(false);
+        }
+    }
+    
+    @FXML
+    public void premiumSelected(ActionEvent e){
+        if(modo_invitado.isSelected()){
+            modo_invitado.setSelected(true);
+        }else{
+            modo_invitado.setSelected(false);
         }
     }
 }
