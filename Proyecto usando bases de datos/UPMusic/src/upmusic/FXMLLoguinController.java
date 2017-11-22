@@ -135,10 +135,17 @@ public class FXMLLoguinController implements Initializable{
             Stage nuevo = new Stage();
             FXMLLoader fxml = new FXMLLoader(getClass().getResource("FXMLCaratula.fxml"));
             Parent root = (Parent) fxml.load();
+            Scene scene = new Scene(root);
+            
+            Theme theme = new Theme();
+            URL urlll = getClass().getResource(theme.getUserTheme() + ".css");
+            String actualTheme = urlll.toExternalForm();
+            scene.getStylesheets().add(actualTheme);
             
             nuevo.getIcons().add(new Image(UPMusic.class.getResourceAsStream("app_icon.png")));
             nuevo.setTitle("UP Music - en sesión [ " + this.usuario +" ] - " + premiumStatus);
-            nuevo.setScene(new Scene(root));
+            //nuevo.setScene(new Scene(root));
+            nuevo.setScene(scene);
             nuevo.setMinWidth(800);
             nuevo.setMinHeight(600);
             nuevo.show();

@@ -115,6 +115,20 @@
     -fx-background-color: #7f8c8d;
 }
 
+.tablaGeneros:focused{
+    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color; 
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 5, 4, 3;
+    -fx-focus-color: transparent;
+}
+
+.tablaCanciones:focused{
+    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color; 
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 5, 4, 3;
+    -fx-focus-color: transparent;
+}
+
 .controlsBox{
     -fx-background-color: #2c3e50;
 }

@@ -5,17 +5,21 @@
             <url>src/upmusic/Reproduccion.java</url>
             <bookmark id="1">
                 <name/>
-                <line>82</line>
+                <line>83</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/fer_i/Documents/UP%20Chiapas/Programación%20visual/Corte%201/Proyecto/UPMusic/src/upmusic/Reproduccion.java</file>
             <file>file:/C:/Users/fer_i/Documents/UP%20Chiapas/Programación%20visual/Corte%201/Proyecto/UPMusic/src/upmusic/FXMLCaratulaController.java</file>
-            <file>file:/C:/Users/fer_i/Documents/UP%20Chiapas/Programación%20visual/Corte%201/Proyecto/UPMusic/src/upmusic/Reproductor.css</file>
-            <file>file:/C:/Users/fer_i/Documents/UP%20Chiapas/Programación%20visual/Corte%201/Proyecto/UPMusic/src/upmusic/SongsTableThread.java</file>
+            <file>file:/C:/Users/fer_i/Documents/UP%20Chiapas/Programación%20visual/Corte%201/Proyecto/UPMusic/src/upmusic/Dark.css</file>
+            <file>file:/C:/Users/fer_i/Documents/UP%20Chiapas/Programación%20visual/Corte%201/Proyecto/UPMusic/src/upmusic/Theme.java</file>
+            <file>file:/C:/Users/fer_i/Documents/UP%20Chiapas/Programación%20visual/Corte%201/Proyecto/UPMusic/src/upmusic/Orange.css</file>
+            <file>file:/C:/Users/fer_i/Documents/UP%20Chiapas/Programación%20visual/Corte%201/Proyecto/UPMusic/src/upmusic/FXMLSettingsController.java</file>
+            <file>file:/C:/Users/fer_i/Documents/UP%20Chiapas/Programación%20visual/Corte%201/Proyecto/UPMusic/src/upmusic/UPMusic.java</file>
+            <file>file:/C:/Users/fer_i/Documents/UP%20Chiapas/Programación%20visual/Corte%201/Proyecto/UPMusic/src/upmusic/Classic.css</file>
+            <file>file:/C:/Users/fer_i/Documents/UP%20Chiapas/Programación%20visual/Corte%201/Proyecto/UPMusic/src/upmusic/FXMLLoguinController.java</file>
         </group>
     </open-files>
 </project-private>

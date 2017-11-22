@@ -7,17 +7,17 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" stylesheets="@UPMusic.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="upmusic.FXMLRegistrarUsuarioController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="upmusic.FXMLRegistrarUsuarioController">
    <children>
-      <Label layoutX="16.0" prefHeight="51.0" prefWidth="266.0" styleClass="etiquetaPrincipalRegistroDeUsuario" stylesheets="@UPMusic.css" text="Creación de usuario" />
-      <Label layoutX="83.0" layoutY="59.0" styleClass="etiquetaPequeniaConFondoOscuro" stylesheets="@UPMusic.css" text="Nombre de usuario:" />
-      <TextField fx:id="INPUT_TEXTO_Usuario" layoutX="75.0" layoutY="93.0" promptText="Nombre de usuario" styleClass="textFieldLoguin" stylesheets="@UPMusic.css" />
-      <Label layoutX="106.0" layoutY="126.0" styleClass="etiquetaPequeniaConFondoOscuro" stylesheets="@UPMusic.css" text="Contraseña:" />
-      <PasswordField fx:id="INPUT_TEXTO_Password" layoutX="76.0" layoutY="160.0" promptText="Contraseña" styleClass="textFieldLoguin" stylesheets="@UPMusic.css" />
-      <CheckBox fx:id="modo_invitado" layoutX="76.0" layoutY="261.0" mnemonicParsing="false" onAction="#ModoInvitadoSeleccionado" styleClass="checkBoxLoguin" stylesheets="@UPMusic.css" text="Entrar como invitado" />
-      <Button fx:id="INPUT_BOTON_Registrar_usuario" layoutX="97.0" layoutY="342.0" mnemonicParsing="false" onAction="#RegistrarUsuario" styleClass="botonLoguin" stylesheets="@UPMusic.css" text="Registrar" />
-      <Label layoutX="118.0" layoutY="185.0" prefHeight="34.0" prefWidth="59.0" styleClass="etiquetaPequeniaConFondoOscuro" stylesheets="@UPMusic.css" text="Correo:" />
-      <TextField fx:id="INPUT_TEXTO_Email" layoutX="76.0" layoutY="219.0" promptText="Correo electrónico" styleClass="textFieldLoguin" stylesheets="@UPMusic.css" />
-      <CheckBox fx:id="adquirir_premium" layoutX="76.0" layoutY="297.0" mnemonicParsing="false" onAction="#premiumSelected" styleClass="checkBoxLoguin" stylesheets="@UPMusic.css" text="Adquirir Premium" />
+      <Label layoutX="16.0" prefHeight="51.0" prefWidth="266.0" styleClass="etiquetaPrincipalRegistroDeUsuario" text="Creación de usuario" />
+      <Label layoutX="83.0" layoutY="59.0" styleClass="etiquetaPequeniaConFondoOscuro" text="Nombre de usuario:" />
+      <TextField fx:id="INPUT_TEXTO_Usuario" layoutX="75.0" layoutY="93.0" promptText="Nombre de usuario" styleClass="textFieldLoguin" />
+      <Label layoutX="106.0" layoutY="126.0" styleClass="etiquetaPequeniaConFondoOscuro" text="Contraseña:" />
+      <PasswordField fx:id="INPUT_TEXTO_Password" layoutX="76.0" layoutY="160.0" promptText="Contraseña" styleClass="textFieldLoguin" />
+      <CheckBox fx:id="modo_invitado" layoutX="76.0" layoutY="261.0" mnemonicParsing="false" onAction="#ModoInvitadoSeleccionado" styleClass="checkBoxLoguin" text="Entrar como invitado" />
+      <Button fx:id="INPUT_BOTON_Registrar_usuario" layoutX="97.0" layoutY="342.0" mnemonicParsing="false" onAction="#RegistrarUsuario" styleClass="botonLoguin" text="Registrar" />
+      <Label layoutX="118.0" layoutY="185.0" prefHeight="34.0" prefWidth="59.0" styleClass="etiquetaPequeniaConFondoOscuro" text="Correo:" />
+      <TextField fx:id="INPUT_TEXTO_Email" layoutX="76.0" layoutY="219.0" promptText="Correo electrónico" styleClass="textFieldLoguin" />
+      <CheckBox fx:id="adquirir_premium" layoutX="76.0" layoutY="297.0" mnemonicParsing="false" onAction="#premiumSelected" styleClass="checkBoxLoguin" text="Adquirir Premium" />
    </children>
 </Pane>

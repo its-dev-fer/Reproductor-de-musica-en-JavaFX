@@ -67,10 +67,11 @@ public class SongsTableThread extends Thread{
     private Button nextBtn, prevBtn,searchBtn;
     private TextField barraBusqueda;
     private String cancionBuscada;
+    private TableView tablaGnro;
     
     private int totalDeFilas,cursor;
     
-    public SongsTableThread(TableView songsTable, Reproduccion r, Conexion con, boolean playing, ImageView cover, Slider s, BorderPane b, Label info, CheckBox rep, ArrayList array, Button n, Button pre, Button search, TextField bus){
+    public SongsTableThread(TableView songsTable, Reproduccion r, Conexion con, boolean playing, ImageView cover, Slider s, BorderPane b, Label info, CheckBox rep, ArrayList array, Button n, Button pre, Button search, TextField bus, TableView tblgnro){
         this.bgdSize = new BackgroundSize(b.getWidth(),b.getHeight(),true,true,true,true);
         this.tablaCanciones = songsTable;
         this.reproductor = r;
@@ -87,6 +88,7 @@ public class SongsTableThread extends Thread{
         this.prevBtn = pre;
         this.searchBtn = search;
         this.barraBusqueda = bus;
+        this.tablaGnro = tblgnro;
     }
     
     @Override
@@ -187,7 +189,8 @@ public class SongsTableThread extends Thread{
                             //controlsBoxBackground = new Background(new BackgroundImage(defaultCover,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,bgdSize));
                             //controlsBox.setBackground(controlsBoxBackground);
                         }
-                    cuadroCaratula.setFitWidth(150);
+                    //cuadroCaratula.setFitWidth(150);
+                    cuadroCaratula.setFitWidth(tablaGnro.getWidth());
                     cuadroCaratula.setFitHeight(150);
                     cuadroCaratula.setPreserveRatio(true);
                     cuadroCaratula.setSmooth(true);
@@ -211,7 +214,7 @@ public class SongsTableThread extends Thread{
                     lblInfoSong.setText(strInfoSong);
                     strInfoSong = "";
                     cuadroCaratula.setImage(caratula);
-                    cuadroCaratula.setFitWidth(150);
+                    cuadroCaratula.setFitWidth(tablaGnro.getWidth());
                     cuadroCaratula.setFitHeight(150);
                     cuadroCaratula.setPreserveRatio(true);
                     cuadroCaratula.setSmooth(true);

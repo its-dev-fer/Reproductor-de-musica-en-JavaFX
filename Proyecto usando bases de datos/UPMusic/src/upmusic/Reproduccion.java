@@ -50,9 +50,9 @@ public class Reproduccion{
     private ImageView caratula;
     private boolean firsTime = true;
     private Label infoSong;
+    private TableView tblGenero;
     
-    
-    public Reproduccion(Slider b, Label l, Button play, CheckBox c, TableView tbl, ImageView img, Label inf, CheckBox repList, Button nxt, Button prev){
+    public Reproduccion(Slider b, Label l, Button play, CheckBox c, TableView tbl, ImageView img, Label inf, CheckBox repList, Button nxt, Button prev, TableView tblG){
         this.isPlaying = false;
         this.barraTiempo = b;
         this.timer = l;
@@ -64,6 +64,7 @@ public class Reproduccion{
         this.repetirLista = repList;
         this.next = nxt;
         this.previous = prev;
+        this.tblGenero = tblG;
     }
         
     public void play(){
@@ -100,7 +101,7 @@ public class Reproduccion{
                 setPath(cancion.getRuta());
                 infoSong.setText(cancion.getTitulo() + " - " + cancion.getArtista());
                 caratula.setImage(new Image("file:" + cancion.getCaratula()));
-                caratula.setFitWidth(150);
+                caratula.setFitWidth(tblGenero.getWidth());
                 caratula.setFitHeight(150);
                 caratula.setPreserveRatio(true);
                 caratula.setSmooth(true);
@@ -117,7 +118,7 @@ public class Reproduccion{
                         setPath(cancion.getRuta());
                         infoSong.setText(cancion.getTitulo() + " - " + cancion.getArtista());
                         caratula.setImage(new Image("file:" + cancion.getCaratula()));
-                        caratula.setFitWidth(150);
+                        caratula.setFitWidth(tblGenero.getWidth());
                         caratula.setFitHeight(150);
                         caratula.setPreserveRatio(true);
                         caratula.setSmooth(true);
@@ -138,7 +139,7 @@ public class Reproduccion{
                 setPath(cancion.getRuta());
                 infoSong.setText(cancion.getTitulo() + " - " + cancion.getArtista());
                 caratula.setImage(new Image("file:" + cancion.getCaratula()));
-                caratula.setFitWidth(150);
+                caratula.setFitWidth(tblGenero.getWidth());
                 caratula.setFitHeight(150);
                 caratula.setPreserveRatio(true);
                 caratula.setSmooth(true);
@@ -155,7 +156,7 @@ public class Reproduccion{
                         setPath(cancion.getRuta());
                         infoSong.setText(cancion.getTitulo() + " - " + cancion.getArtista());
                         caratula.setImage(new Image("file:" + cancion.getCaratula()));
-                        caratula.setFitWidth(150);
+                        caratula.setFitWidth(tblGenero.getWidth());
                         caratula.setFitHeight(150);
                         caratula.setPreserveRatio(true);
                         caratula.setSmooth(true);
@@ -185,7 +186,7 @@ public class Reproduccion{
                         setPath(cancion.getRuta());
                         infoSong.setText(cancion.getTitulo() + " - " + cancion.getArtista());
                         caratula.setImage(new Image("file:" + cancion.getCaratula()));
-                        caratula.setFitWidth(150);
+                        caratula.setFitWidth(tblGenero.getWidth());
                         caratula.setFitHeight(150);
                         caratula.setPreserveRatio(true);
                         caratula.setSmooth(true);
@@ -204,7 +205,7 @@ public class Reproduccion{
                                 setPath(cancion.getRuta());
                                 infoSong.setText(cancion.getTitulo() + " - " + cancion.getArtista());
                                 caratula.setImage(new Image("file:" + cancion.getCaratula()));
-                                caratula.setFitWidth(150);
+                                caratula.setFitWidth(tblGenero.getWidth());
                                 caratula.setFitHeight(150);
                                 caratula.setPreserveRatio(true);
                                 caratula.setSmooth(true);

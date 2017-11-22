@@ -5,6 +5,7 @@
  */
 package upmusic;
 
+import java.net.URL;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,8 +17,13 @@ public class UPMusic extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        Theme theme = new Theme();
+        String actualTheme;
+        URL url = getClass().getResource(theme.getUserTheme() + ".css");
+        actualTheme = url.toExternalForm();
         Parent root = FXMLLoader.load(getClass().getResource("FXMLLoguin.fxml"));
         Scene scene = new Scene(root,300,400);
+        scene.getStylesheets().add(actualTheme);
         stage.setTitle("UP Music - Inicio de sesion");
         //stage.getIcons().add(new Image("file:src/app_icon.png"));
         //stage.getIcons().add(new Image(getClass().getResourceAsStream("../img/app_icon.png")));

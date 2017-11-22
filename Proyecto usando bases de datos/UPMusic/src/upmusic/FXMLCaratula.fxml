@@ -37,25 +37,25 @@
       </MenuBar>
    </top>
    <bottom>
-      <BorderPane fx:id="controlsBox" prefHeight="114.0" prefWidth="600.0" styleClass="controlsBox" stylesheets="@Reproductor.css" BorderPane.alignment="CENTER">
+      <BorderPane fx:id="controlsBox" prefHeight="114.0" prefWidth="600.0" styleClass="controlsBox" BorderPane.alignment="CENTER">
          <left>
             <ImageView fx:id="caratula" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
          </left>
          <right>
             <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="contenedorDeBotonesDeReproduccion" stylesheets="@Reproductor.css" BorderPane.alignment="CENTER">
                <center>
-                  <Button fx:id="play" mnemonicParsing="false" styleClass="play" stylesheets="@Reproductor.css" text="I&gt;" BorderPane.alignment="CENTER" />
+                  <Button fx:id="play" mnemonicParsing="false" styleClass="play" text="I&gt;" BorderPane.alignment="CENTER" />
                </center>
                <left>
-                  <Button fx:id="back" mnemonicParsing="false" styleClass="previous" stylesheets="@Reproductor.css" text="&lt;" BorderPane.alignment="CENTER" />
+                  <Button fx:id="back" mnemonicParsing="false" styleClass="previous" text="&lt;" BorderPane.alignment="CENTER" />
                </left>
                <right>
-                  <Button fx:id="next" mnemonicParsing="false" styleClass="next" stylesheets="@Reproductor.css" text="&gt;" BorderPane.alignment="CENTER" />
+                  <Button fx:id="next" mnemonicParsing="false" styleClass="next" text="&gt;" BorderPane.alignment="CENTER" />
                </right>
                <bottom>
                   <BorderPane prefHeight="43.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <left>
-                        <CheckBox fx:id="repetirCancion" mnemonicParsing="false" styleClass="labelInfoSong" stylesheets="@Reproductor.css" text="Repetir" textFill="WHITE" BorderPane.alignment="CENTER">
+                        <CheckBox fx:id="repetirCancion" mnemonicParsing="false" styleClass="labelInfoSong" text="Repetir" textFill="WHITE" BorderPane.alignment="CENTER">
                            <effect>
                               <DropShadow />
                            </effect></CheckBox>
@@ -75,14 +75,14 @@
                <center>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <top>
-                        <Label fx:id="infoSong" styleClass="labelInfoSong" stylesheets="@Reproductor.css" text="Nada por reproducir" BorderPane.alignment="CENTER">
+                        <Label fx:id="infoSong" styleClass="labelInfoSong" text="Nada por reproducir" BorderPane.alignment="CENTER">
                            <effect>
                               <DropShadow />
                            </effect>
                         </Label>
                      </top>
                      <center>
-                        <Slider fx:id="barraTiempo" majorTickUnit="1.0" prefHeight="38.0" prefWidth="184.0" snapToTicks="true" stylesheets="@Reproductor.css" BorderPane.alignment="CENTER">
+                        <Slider fx:id="barraTiempo" majorTickUnit="1.0" prefHeight="38.0" prefWidth="184.0" snapToTicks="true" BorderPane.alignment="CENTER">
                            <effect>
                               <DropShadow />
                            </effect></Slider>
@@ -94,7 +94,7 @@
                         <Label styleClass="noTextLabel" stylesheets="@Reproductor.css" BorderPane.alignment="CENTER" />
                      </right>
                      <bottom>
-                        <Label fx:id="timer" styleClass="labelInfoSong" stylesheets="@Reproductor.css" text="0:00" BorderPane.alignment="CENTER">
+                        <Label fx:id="timer" styleClass="labelInfoSong" text="0:00" BorderPane.alignment="CENTER">
                            <effect>
                               <DropShadow />
                            </effect>
@@ -109,7 +109,7 @@
    <left>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
-            <TableView fx:id="tablaGeneros" prefHeight="200.0" prefWidth="200.0" styleClass="tablaGeneros" stylesheets="@Reproductor.css" BorderPane.alignment="CENTER">
+            <TableView fx:id="tablaGeneros" prefHeight="200.0" prefWidth="200.0" styleClass="tablaGeneros" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn prefWidth="75.0" text="C1" />
                 <TableColumn prefWidth="75.0" text="C2" />
@@ -124,7 +124,7 @@
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
-            <TableView fx:id="tablaCanciones" prefHeight="200.0" prefWidth="164.0" styleClass="tablaCanciones" stylesheets="@Reproductor.css" BorderPane.alignment="CENTER">
+            <TableView fx:id="tablaCanciones" prefHeight="200.0" prefWidth="164.0" styleClass="tablaCanciones" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn prefWidth="75.0" text="C1" />
                 <TableColumn prefWidth="75.0" text="C2" />
@@ -135,7 +135,7 @@
             </TableView>
          </center>
          <top>
-            <BorderPane prefHeight="27.0" prefWidth="365.0" BorderPane.alignment="CENTER">
+            <BorderPane prefHeight="33.0" prefWidth="400.0" BorderPane.alignment="CENTER">
                <center>
                   <TextField fx:id="busqueda" promptText="¿Qué vas a escuchar?" BorderPane.alignment="CENTER" />
                </center>

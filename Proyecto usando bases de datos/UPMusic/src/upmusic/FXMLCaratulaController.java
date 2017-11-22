@@ -4,17 +4,23 @@
  */
 package upmusic;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -27,7 +33,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 /**
  * FXML Controller class*
  * @author Israel Gutiérrez
@@ -122,7 +132,18 @@ public class FXMLCaratulaController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 //Abrir ventana de ajustes
-                System.out.println("Ctrl + P :v");
+                Stage ajustes = new Stage();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLSettings.fxml"));
+                try {
+                    Parent parent = (Parent) loader.load();
+                    ajustes.setTitle("UP Music - Preferencias");
+                    ajustes.setScene(new Scene(parent));
+                    //stage.initModality(Modality.APPLICATION_MODAL);
+                    ajustes.initModality(Modality.APPLICATION_MODAL);
+                    ajustes.show();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLCaratulaController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         
@@ -130,9 +151,25 @@ public class FXMLCaratulaController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 //Abrir ventana de acerca de
-                System.out.println("Acerca de");
+                Stage stagePreferences = new Stage();
+                Parent parent = new Parent() {
+                };
+                FXMLLoader fxml = new FXMLLoader(getClass().getResource("FXMLAbout.fxml"));
+                try {
+                    parent = (Parent) fxml.load();
+                } catch (IOException ex) {
+                    System.out.println("EX = " + ex);
+                }
+                
+                stagePreferences.setTitle("UP Music - Acerca de");
+                stagePreferences.setScene(new Scene(parent));
+                //stage.initModality(Modality.APPLICATION_MODAL);
+                stagePreferences.initModality(Modality.APPLICATION_MODAL);
+                stagePreferences.show();
             }
         });
+        
+        menuPreferences.setAccelerator(new KeyCodeCombination(KeyCode.P, KeyCodeCombination.CONTROL_DOWN));
         
         barraMenu.getMenus().addAll(menuFile,menuAbout); 
         
@@ -141,7 +178,7 @@ public class FXMLCaratulaController implements Initializable {
         menuFile.getItems().add(menuPreferences);
         menuAbout.getItems().add(itemAbout);
         
-        reproductor = new Reproduccion(barraTiempo,timer,play,repetirCancion,tablaCanciones,caratula,infoSong,repetirLista,next,back);
+        reproductor = new Reproduccion(barraTiempo,timer,play,repetirCancion,tablaCanciones,caratula,infoSong,repetirLista,next,back,tablaGeneros);
         String query;
         BD = new Conexion();
         BD.conectarBD();
@@ -165,10 +202,12 @@ public class FXMLCaratulaController implements Initializable {
             back.setDisable(true);
             next.setDisable(true);
             repetirCancion.setDisable(true);
+            repetirLista.setDisable(true);
             barraTiempo.setDisable(true);
             busqueda.setDisable(true);
             searchButton.setDisable(true);
             busqueda.setPromptText("Actualízate a premium para desbloquear todas las funcionalidades :D");
+            menuPreferences.setDisable(true);
         }
         
         ////////////////////////////////////////////////////////////////
@@ -207,7 +246,7 @@ public class FXMLCaratulaController implements Initializable {
         
         actualizarBiblioteca = new UpdateLibrary(tablaGeneros, tablaCanciones, BD,reproductor);
         System.out.println("Lista de canciones = " + listaDeCanciones);
-        actualizarTablaDeCanciones = new SongsTableThread(tablaCanciones, reproductor, BD,playing,caratula,barraTiempo,controlsBox,infoSong,repetirCancion, rutas,next,back,searchButton, busqueda);
+        actualizarTablaDeCanciones = new SongsTableThread(tablaCanciones, reproductor, BD,playing,caratula,barraTiempo,controlsBox,infoSong,repetirCancion, rutas,next,back,searchButton, busqueda,tablaGeneros);
         actualizarBiblioteca.start();
         actualizarTablaDeCanciones.start();
     }   

@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.Alert;
 
 
 /**
@@ -32,7 +33,10 @@ public class Conexion {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("UP Music");
+            alert.setContentText("No podemos conectarnos a nuestras bases de datos :c\n1.- Verifica tu conexión a Internet\n2.- Es probable que los servidores se encuentren en mantenimiento.");
+            alert.showAndWait();
         }finally{
             System.out.println("*** Conexion exitosa ***");
             return conexion;
