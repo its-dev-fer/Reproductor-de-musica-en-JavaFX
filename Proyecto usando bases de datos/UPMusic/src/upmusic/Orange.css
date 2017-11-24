@@ -2,18 +2,18 @@
 Creado por Luis Fernnando Hernández Morales
 */
 .root{
--fx-background: #E64A19;
+-fx-background: #FFCCBC;
 -fx-focus-color: transparent;
 }
 
 .etiquetaConFondoOscuro{
--fx-text-fill: white;
+-fx-text-fill: #555555;
 -fx-font-size: 25pt;
 -fx-padding: 10pt;
 }
 
 .etiquetaPequeniaConFondoOscuro{
--fx-text-fill: white;
+-fx-text-fill: #555555;
 -fx-font-size: 10pt;
 -fx-padding: 5pt;
 }
@@ -28,23 +28,23 @@ Creado por Luis Fernnando Hernández Morales
 .button{
 -fx-text-fill: white;
 -fx-font-size: 8pt;
--fx-background-color: #536DFE;
+-fx-background-color: #FFCCBC;
 -fx-border-radius: 30;
 -fx-background-radius: 30;
 }
 
 .botonLoguin{
--fx-text-fill: #212121;
+-fx-text-fill: #FFCCBC;
 -fx-font-size: 15pt;
--fx-background-color: #FFCCBC;
+-fx-background-color: #E64A19;
 -fx-border-radius: 30;
 -fx-background-radius: 30;
 }
 
 .botonRegistrarUsuario{
--fx-text-fill: #212121;
+-fx-text-fill: #FFCCBC;
 -fx-font-size: 8pt;
--fx-background-color: #FFCCBC;
+-fx-background-color: #E64A19;
 -fx-border-radius: 30;
 -fx-background-radius: 30;
 }
@@ -60,56 +60,56 @@ Creado por Luis Fernnando Hernández Morales
 -fx-font-size: 10pt;
 }
 
-.play{
+.reproducir{
     /*-fx-background-image: url("playIcon.png");*/
     /*-fx-font-family: 'FontAwesome';*/
     -fx-text-fill: white;
     -fx-font-size: 20pt;
-    -fx-background-color:  #FF5722;
+    -fx-background-color:  #FFCCBC;
     /*rgb(66, 163, 79)*/
     -fx-padding-left: 10pt;
     -fx-padding-rigth: 10pt;
     -fx-border-radius: 90;
     -fx-border-background: 90;
-    -fx-effect: dropshadow( three-pass-box , #E64A19 , 1, 0.0 , 0 , 5 );
+    -fx-effect: dropshadow( three-pass-box , #E64A19 , 1, 0.0 , 0 , 8 );
 }
 
-.play:hover{
+.reproducir:hover{
     /*-fx-effect: dropshadow( three-pass-box , rgba(26,79,165,1) , 1, 0.0 , 0 , 5 );*/
-    -fx-effect: dropshadow( three-pass-box , #E64A19 , 0, 0.0 , 0 , 2 );
+    -fx-effect: dropshadow( three-pass-box , #4e4e4e , 0, 0.0 , 0 , 4 );
     /*rgb(62, 153, 74)*/
 }
 
-.next{
+.siguiente{
     /*-fx-background-image: url("next.png");*/
     -fx-font-size: 20pt;
     -fx-font-family: 'FontAwesome';
     -fx-text-fill: white;
-    -fx-background-color:  #FF5722;
+    -fx-background-color:  #FFCCBC;
     -fx-padding-left: 10pt;
     -fx-padding-rigth: 10pt;
     -fx-effect: dropshadow( three-pass-box , #E64A19 , 1, 0.0 , 0 , 5 );
 }
 
-.next:hover{
+.siguiente:hover{
     /*-fx-effect: dropshadow( three-pass-box ,  rgba(26,79,165,1) , 1, 0.0 , 0 , 5 );*/
-    -fx-effect: dropshadow( three-pass-box , #E64A19 , 0, 0.0 , 0 , 2 );
+    -fx-effect: dropshadow( three-pass-box , #4e4e4e , 0, 0.0 , 0 , 2 );
 }
 
-.previous{
+.anterior{
     -fx-font-family: 'FontAwesome';
     /*-fx-background-image: url("next.png");*/
     -fx-text-fill: white;
     -fx-font-size: 20pt;
-    -fx-background-color:  #FF5722;
+    -fx-background-color:  #FFCCBC;
     -fx-padding-left: 10pt;
     -fx-padding-rigth: 10pt;
     -fx-effect: dropshadow( three-pass-box , #E64A19 , 1, 0.0 , 0 , 5 );
 }
 
-.previous:hover{
+.anterior:hover{
     /*-fx-effect: dropshadow( three-pass-box ,  rgba(26,79,165,1) , 1, 0.0 , 0 , 2 );*/
-    -fx-effect: dropshadow( three-pass-box , #E64A19 , 0, 0.0 , 0 , 2 );
+    -fx-effect: dropshadow( three-pass-box , #4e4e4e , 0, 0.0 , 0 , 2 );
 }
 
 .caratula{
@@ -129,9 +129,6 @@ Creado por Luis Fernnando Hernández Morales
     -fx-margin: 50pt;
 }
 
-.slider{
-    
-}
 .noTextLabel{
     -fx-padding: 20pt;
 }
@@ -154,19 +151,16 @@ Creado por Luis Fernnando Hernández Morales
     -fx-font-size: 12pt;
 }
 
-.outline.labelInfoSong{
-    -fx-fill: black;
-    -fx-stroke-width: 3px;
-}
 .tablaGeneros{
-    -fx-text-fill: #212121;
+    /*-fx-text-fill: #212121;*/
+    -fx-text-fill: #E64A19;
     -fx-font-size: 12pt;
-    -fx-background-color: #E64A19;
+    -fx-background-color: #FFCCBC;
 }
 .tablaCanciones{
-    -fx-text-fill: #212121;
+    -fx-text-fill: #E64A19;
     -fx-font-size: 12pt;
-    -fx-background-color: #FF5722;
+    -fx-background-color: #FFCCBC;
 }
 
 .tablaGeneros:focused{
@@ -188,12 +182,17 @@ Creado por Luis Fernnando Hernández Morales
 }
 
 .table-cell {
-    -fx-text-fill: #212121;
-    -fx-background-color: #FF5722;
+    -fx-text-fill: #E64A19;
+    -fx-background-color: #FFCCBC;
 }
 
 .table-row-cell:selected .table-cell{
-    -fx-text-fill: #212121;
+    -fx-text-fill: #E64A19;
     -fx-background-color: #FFCCBC;
+}
+
+.tablaCanciones:active .table-cell{
+    -fx-text-fill: #FFCCBC;
+    -fx-background-color: #E64A19;
 }
 

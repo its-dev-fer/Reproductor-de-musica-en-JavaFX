@@ -60,7 +60,7 @@ Creado por Luis Fernnando Hernández Morales
 -fx-font-size: 10pt;
 }
 
-.play{
+.reproducir{
     /*-fx-background-image: url("playIcon.png");*/
     /*-fx-font-family: 'FontAwesome';*/
     -fx-text-fill: white;
@@ -74,13 +74,13 @@ Creado por Luis Fernnando Hernández Morales
     -fx-effect: dropshadow( three-pass-box , rgb(100, 111, 112) , 1, 0.0 , 0 , 5 );
 }
 
-.play:hover{
+.reproducir:hover{
     /*-fx-effect: dropshadow( three-pass-box , rgba(26,79,165,1) , 1, 0.0 , 0 , 5 );*/
     -fx-effect: dropshadow( three-pass-box , rgb(100, 111, 112) , 0, 0.0 , 0 , 2 );
     /*rgb(62, 153, 74)*/
 }
 
-.next{
+.siguiente{
     /*-fx-background-image: url("next.png");*/
     -fx-font-size: 20pt;
     -fx-font-family: 'FontAwesome';
@@ -91,12 +91,12 @@ Creado por Luis Fernnando Hernández Morales
     -fx-effect: dropshadow( three-pass-box , rgb(100, 111, 112) , 1, 0.0 , 0 , 5 );
 }
 
-.next:hover{
+.siguiente:hover{
     /*-fx-effect: dropshadow( three-pass-box ,  rgba(26,79,165,1) , 1, 0.0 , 0 , 5 );*/
     -fx-effect: dropshadow( three-pass-box , rgb(100, 111, 112) , 0, 0.0 , 0 , 2 );
 }
 
-.previous{
+.anterior{
     -fx-font-family: 'FontAwesome';
     /*-fx-background-image: url("next.png");*/
     -fx-text-fill: white;
@@ -107,7 +107,7 @@ Creado por Luis Fernnando Hernández Morales
     -fx-effect: dropshadow( three-pass-box , rgb(100, 111, 112) , 1, 0.0 , 0 , 5 );
 }
 
-.previous:hover{
+.anterior:hover{
     /*-fx-effect: dropshadow( three-pass-box ,  rgba(26,79,165,1) , 1, 0.0 , 0 , 2 );*/
     -fx-effect: dropshadow( three-pass-box , rgb(100, 111, 112) , 0, 0.0 , 0 , 2 );
 }

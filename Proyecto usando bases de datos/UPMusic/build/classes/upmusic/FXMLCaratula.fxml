@@ -11,6 +11,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 
@@ -39,18 +40,21 @@
    <bottom>
       <BorderPane fx:id="controlsBox" prefHeight="114.0" prefWidth="600.0" styleClass="controlsBox" BorderPane.alignment="CENTER">
          <left>
-            <ImageView fx:id="caratula" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+            <ImageView fx:id="caratula" fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" style="-fx-border: black;" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@default.jpg" />
+               </image></ImageView>
          </left>
          <right>
             <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="contenedorDeBotonesDeReproduccion" stylesheets="@Reproductor.css" BorderPane.alignment="CENTER">
                <center>
-                  <Button fx:id="play" mnemonicParsing="false" styleClass="play" text="I&gt;" BorderPane.alignment="CENTER" />
+                  <Button fx:id="play" mnemonicParsing="false" styleClass="reproducir" text="I&gt;" BorderPane.alignment="CENTER" />
                </center>
                <left>
-                  <Button fx:id="back" mnemonicParsing="false" styleClass="previous" text="&lt;" BorderPane.alignment="CENTER" />
+                  <Button fx:id="back" mnemonicParsing="false" styleClass="anterior" text="&lt;" BorderPane.alignment="CENTER" />
                </left>
                <right>
-                  <Button fx:id="next" mnemonicParsing="false" styleClass="next" text="&gt;" BorderPane.alignment="CENTER" />
+                  <Button fx:id="next" mnemonicParsing="false" styleClass="siguiente" text="&gt;" BorderPane.alignment="CENTER" />
                </right>
                <bottom>
                   <BorderPane prefHeight="43.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -107,9 +111,9 @@
       </BorderPane>
    </bottom>
    <left>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="245.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
-            <TableView fx:id="tablaGeneros" prefHeight="200.0" prefWidth="200.0" styleClass="tablaGeneros" BorderPane.alignment="CENTER">
+            <TableView fx:id="tablaGeneros" prefHeight="245.0" prefWidth="110.0" styleClass="tablaGeneros" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn prefWidth="75.0" text="C1" />
                 <TableColumn prefWidth="75.0" text="C2" />
