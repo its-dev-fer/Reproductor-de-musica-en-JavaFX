@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="521.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLGUIController">
+   <children>
+      <Label layoutX="224.0" layoutY="15.0" text="UP - Music" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="269.0" layoutY="60.0" text="Uploader">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textFieldRutaArchivo" editable="false" layoutX="70.0" layoutY="135.0" prefHeight="25.0" prefWidth="430.0" promptText="Ruta de Archivo...">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </TextField>
+      <Button layoutX="515.0" layoutY="135.0" mnemonicParsing="false" onAction="#abrirExploradorDeArchivos" text="...">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="41.0" layoutY="218.0" text="Nombre:" />
+      <TextField fx:id="textFieldNombre" layoutX="106.0" layoutY="214.0" prefHeight="25.0" prefWidth="329.0" />
+      <TextField fx:id="textFieldArtista" layoutX="106.0" layoutY="253.0" prefHeight="25.0" prefWidth="329.0" />
+      <ChoiceBox fx:id="choiceBoxGeneros" layoutX="106.0" layoutY="293.0" prefWidth="150.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ChoiceBox>
+      <TextField fx:id="textFieldAlbum" layoutX="107.0" layoutY="335.0" prefHeight="25.0" prefWidth="329.0" />
+      <TextField fx:id="textFieldRutaImagen" editable="false" layoutX="161.0" layoutY="378.0" prefHeight="25.0" prefWidth="360.0" promptText="Ruta de Imagen...">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </TextField>
+      <Button layoutX="535.0" layoutY="378.0" mnemonicParsing="false" onAction="#abrirExploradorDeImagenes" text="...">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="44.0" layoutY="257.0" text="Artista:" />
+      <Label layoutX="43.0" layoutY="297.0" text="Género:" />
+      <Label layoutX="43.0" layoutY="339.0" text="Álbum:" />
+      <Label layoutX="44.0" layoutY="382.0" text="Imagen de álbum:" />
+      <Label layoutX="256.0" layoutY="110.0" text="Música / Archivo" />
+      <Label fx:id="labelVersion" layoutX="533.0" layoutY="486.0" text="V. 2.0" />
+      <Button layoutX="321.0" layoutY="455.0" mnemonicParsing="false" onAction="#enviarArchivoALaBD" text="Enviar a la BD" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="157.0" layoutY="455.0" mnemonicParsing="false" onAction="#limpiarCamposGUI" text="Limpiar Campos" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>
