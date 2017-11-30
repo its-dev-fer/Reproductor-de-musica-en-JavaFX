@@ -44,8 +44,6 @@ public class FXMLSettingsController implements Initializable {
         availableThemes = FXCollections.observableArrayList();
         availableThemes.add("Dark");
         availableThemes.add("Classic");
-        availableThemes.add("Orange");
-        availableThemes.add("Red");
         
         selectTheme.setItems(availableThemes);
         
